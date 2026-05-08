@@ -75,10 +75,10 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
   const proporcionData = [
     [
-      { name: 'Emergencia', value: 25, color: '#3B82F6' },
-      { name: 'Antiinfeccioso', value: 25, color: '#10B981' },
-      { name: 'Crónico', value: 25, color: '#0EA5E9' },
-      { name: 'Otro', value: 25, color: '#8B5CF6' },
+      { name: 'Medicamentos de Emergencia', value: 25, color: '#3B82F6' },
+      { name: 'Antibióticos', value: 25, color: '#10B981' },
+      { name: 'Medicamentos para Enfermedades Crónicas', value: 25, color: '#0EA5E9' },
+      { name: 'Otros', value: 25, color: '#8B5CF6' },
     ],
     [
       { name: 'Analgésico', value: 30, color: '#EF4444' },
@@ -90,10 +90,10 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
   const proveedorData = [
     [
-      { name: 'Laboratorios PiSA', score: '96.8', rank: 1, color: 'bg-amber-100 text-amber-600' },
+      { name: 'Laboratorios PISA', score: '96.8', rank: 1, color: 'bg-amber-100 text-amber-600' },
       { name: 'Chinoin', score: '95.4', rank: 2, color: 'bg-slate-100 text-slate-500' },
       { name: 'Liomont', score: '94.9', rank: 3, color: 'bg-orange-100 text-orange-600' },
-      { name: 'Genomma Lab', score: '93.0', rank: 4, color: 'bg-blue-100 text-blue-600' },
+      { name: 'Genomma Lab Internacional', score: '93.0', rank: 4, color: 'bg-blue-100 text-blue-600' },
     ],
     [
       { name: 'Pisa Pharma', score: '98.2', rank: 1, color: 'bg-amber-100 text-amber-600' },
@@ -194,7 +194,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             <ArrowLeft className="w-5 h-5 text-cyan-100 group-hover:scale-110 transition-transform" />
           </button>
           <div className="h-8 w-px bg-white/20 mx-2"></div>
-          <h1 className="text-sm font-black tracking-[0.2em] uppercase opacity-80">{t('dashboard.header.admin_console')}</h1>
+          <h1 className="opacity-80 text-white">{t('dashboard.header.admin_console')}</h1>
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
@@ -202,19 +202,18 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             <Truck className="w-6 h-6 text-[#004D40]" />
           </div>
           <div className="flex flex-col">
-            <span className="font-black text-2xl tracking-tighter uppercase leading-none">PharmaLink</span>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-cyan-300/80">{t('dashboard.title')}</span>
+            <span className="font-black text-2xl tracking-tighter leading-none">PharmaLink</span>
+            <span className="text-[10px] font-bold tracking-[0.3em] text-cyan-300/80">{t('dashboard.title')}</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6">
           <div className="flex flex-col items-end">
-            <p className="text-[10px] font-black tracking-widest text-cyan-300/60 uppercase">Estado Operativo</p>
             <p className="text-xs font-black">{formatDateTime(currentTime)}</p>
           </div>
           <button className="flex items-center gap-2 bg-rose-500/10 hover:bg-rose-500/20 px-5 py-2.5 rounded-xl transition-all border border-rose-500/20 group text-rose-300">
             <LogOut className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-xs font-black uppercase tracking-widest">{t('dashboard.header.logout')}</span>
+            <span className="text-xs font-black tracking-widest">{t('dashboard.header.logout')}</span>
           </button>
         </div>
       </div>
@@ -239,8 +238,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               customTitle={(
                 <div className="flex flex-row items-center justify-between mb-6 pt-4">
                   <div className="text-left">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Consumo</p>
-                    <p className="text-2xl font-black text-slate-800 tracking-tighter leading-none">{consumoData[activeTab1].value}</p>
+                    <p className="text-[9.5px] font-black text-slate-400 tracking-widest mb-1">Consumo</p>
+                    <p className="text-xl font-black text-slate-800 tracking-tighter leading-none">{consumoData[activeTab1].value}</p>
                   </div>
 
                   <div className="flex gap-3 pr-1">
@@ -307,8 +306,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                 <div className="space-y-2 mb-2">
                   <div className="flex justify-between items-end">
                     <div className="text-left">
-                       <p className="text-[10px] font-black text-teal-600 uppercase tracking-widest mb-1">Rotación de Inventario</p>
-                       <p className="text-xs font-bold text-slate-500 leading-tight uppercase">
+                       <p className="text-[10px] font-black text-teal-600 tracking-widest mb-1">Rotación de Inventario</p>
+                       <p className="text-xs font-bold text-slate-500 leading-tight">
                          Stock de Consumo / Inventario Promedio
                        </p>
                     </div>
@@ -376,8 +375,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
                 {/* Right Stat */}
                 <div className="min-w-[70px] flex flex-col items-start justify-center border-l border-slate-100 pl-4 h-full">
-                  <p className="text-[10px] font-black text-slate-400 leading-tight uppercase mb-1">Rotación</p>
-                  <p className="text-2xl font-black text-slate-800 tracking-tighter leading-none">{inventarioData[activeTab2].rotation}</p>
+                  <p className="text-[9.5px] font-black text-slate-400 leading-tight mb-1">Rotación</p>
+                  <p className="text-xl font-black text-slate-800 tracking-tighter leading-none">{inventarioData[activeTab2].rotation}</p>
                 </div>
               </div>
             </Card>
@@ -385,53 +384,51 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
           {/* Center Column: KPI & Map */}
           <div className="flex-1 min-w-0 space-y-6">
-            <div className="bg-white/80 backdrop-blur-md rounded-[40px] border border-teal-100/50 shadow-2xl shadow-teal-900/5 p-4 flex items-center justify-between gap-4 overflow-hidden relative group">
-              <div className="absolute top-0 right-1/4 w-32 h-full bg-cyan-50/20 skew-x-[-25deg] transform translate-x-16 pointer-events-none transition-transform group-hover:translate-x-32 duration-1000"></div>
-              
-              <div className="flex items-center gap-6 px-6 border-r border-slate-100 shrink-0">
+            <div className="backdrop-blur-md rounded-[12px] bg-[#e4f8f0] border-2 border-[#77dcb8] shadow-2xl shadow-teal-900/5 p-4 flex items-center justify-between gap-4 overflow-hidden relative group">
+              <div className="flex items-center gap-4 px-4 border-r border-slate-100 shrink-0">
                  <div className="space-y-1">
-                   <h3 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Hospitales</h3>
-                   <p className="text-2xl font-black text-rose-500 tracking-tighter leading-none">176</p>
+                   <h3 className="mb-1 tracking-[0.1em]">Hospitales</h3>
+                   <p className="text-xl font-black text-[#008f78] tracking-tighter leading-none">176</p>
                  </div>
               </div>
 
-              <div className="flex-1 flex items-center justify-around px-8">
+              <div className="flex-1 flex items-center justify-around px-2">
                  {summaryStats.slice(1, 4).map((stat, idx) => (
-                   <div key={idx} className="flex items-center gap-4 group/item">
+                   <div key={idx} className="flex items-center gap-3 group/item">
                      <div className={cn(
-                       "w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-lg border-2 border-slate-50 transition-all duration-300 group-hover/item:scale-110 group-hover/item:-translate-y-1",
+                       "w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg border-2 border-slate-50 transition-all duration-300 group-hover/item:scale-110 group-hover/item:-translate-y-1",
                        stat.bg, stat.color
                      )}>
-                       <stat.icon className="w-6 h-6 stroke-[2.5]" />
+                       <stat.icon className="w-4 h-4 stroke-[2.5]" />
                      </div>
                      <div className="min-w-0">
-                       <p className={cn("text-[9px] font-black uppercase tracking-widest leading-none mb-1.5 opacity-60", stat.color)}>{stat.label}</p>
-                       <p className="text-xl font-black text-slate-800 tracking-tighter leading-none">{stat.value}</p>
+                       <p className={cn("text-[7px] font-black tracking-widest leading-none mb-1.5 opacity-60", stat.color)}>{stat.label}</p>
+                       <p className="text-l font-black text-slate-800 tracking-tighter leading-none">{stat.value}</p>
                      </div>
                    </div>
                  ))}
               </div>
 
-              <div className="flex items-center gap-6 px-6 border-l border-slate-100 shrink-0">
+              <div className="flex items-center gap-6 px-2 border-l border-slate-100 shrink-0">
                   <div className="text-right space-y-1">
-                    <h3 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Proveedores</h3>
-                    <p className="text-2xl font-black text-cyan-600 tracking-tighter leading-none">266</p>
+                    <h3 className="mb-1 tracking-[0.1em]">Proveedores</h3>
+                    <p className="text-xl font-black text-[#008f78] tracking-tighter leading-none">266</p>
                   </div>
               </div>
             </div>
 
-            <Card hideHeader customTitle={null}>
-              <div className="flex flex-col items-center justify-center relative h-[530px] rounded-[40px] -mt-4 overflow-hidden">
+            <MapCard hideHeader customTitle={null}>
+              <div className="bg-transparent flex flex-col items-center justify-center relative h-[450px] overflow-hidden">
                 {/* Ambient Glow Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-emerald-50/50 to-cyan-50/30 rounded-[40px]"></div>
+                <div className="bg-transparent absolute inset-0  via-emerald-50/50 to-cyan-50/30"></div>
 
-                <div className="relative w-full h-full flex items-center justify-center z-10 px-4">
-                  <div className="relative w-full max-w-2xl transform hover:scale-[1.02] transition-transform duration-700">
-                    <MexicoMap className="drop-shadow-2xl" />
+                <div className="bg-transparent relative w-full h-full flex items-center justify-center z-10">
+                  <div className="bg-transparent relative w-full max-w-2xl transform hover:scale-[1.02] transition-transform duration-300">
+                    <MexicoMap className="bg-transparent drop-shadow-1xl" />
                   </div>
                 </div>
               </div>
-            </Card>
+            </MapCard>
           </div>
 
           {/* Right Column: Insights */}
@@ -448,7 +445,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               bodyClassName="w-[340px]"
               className="border-b-0 shadow-none relative z-10 h-[250px]"
             >
-              <div className="flex flex-row items-center h-[240px] pt-2">
+              <div className="flex flex-row items-center h-[160px]">
                 {/* Legend on the Left */}
                 <div className="flex-1 space-y-2 pl-2 pr-2">
                    {proporcionData[activeTab3].map((item, idx) => (
@@ -487,8 +484,6 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
                   {/* Center text */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                    <span className="text-lg font-black text-slate-800">75%</span>
-                    <span className="text-[10px] font-bold text-slate-400">Cobertura</span>
                   </div>
 
                   {/* Outer labels */}
@@ -523,7 +518,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               bodyClassName="w-[340px]"
               className="border-b-0 shadow-none relative z-10 h-[250px]"
             >
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <div className="space-y-2">
                    {proveedorData[activeTab4].map((prov, idx) => (
                      <div key={idx} className="flex items-center gap-3 group cursor-pointer">
@@ -532,9 +527,9 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                        </div>
                        <div className="flex-1 min-w-0">
                          <div className="flex items-center justify-between mb-1">
-                           <h5 className="text-[10px] font-black text-slate-800 truncate pr-2 tracking-widest uppercase">{prov.name}</h5>
-                           <div className="text-[10px] font-bold text-teal-600 flex items-center gap-1">
-                             <span className="text-slate-400 font-bold uppercase text-[8px]">Puntuación</span>
+                           <h5 className="text-[9.5px] font-bold text-slate-800 truncate pr-2 tracking-widest leading-none">{prov.name}</h5>
+                           <div className="text-[9.5px] font-bold text-teal-600 flex items-center gap-1">
+                             <span className="text-slate-400 font-bold text-[7px] scale-90 origin-right">Puntuación</span>
                              <span className="font-black text-xs">{prov.score}</span>
                            </div>
                          </div>
@@ -553,7 +548,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
         {/* Bottom Table Section */}
         <div className="bg-white rounded-[32px] border border-slate-100 shadow-xl shadow-teal-900/5 overflow-hidden">
           <div className="p-8 pb-4">
-             <h3 className="text-2xl font-black text-[#004D40] tracking-tighter uppercase mb-6 flex items-center gap-3">
+             <h3 className="mb-6 flex items-center gap-3">
                <div className="w-1.5 h-8 bg-teal-400 rounded-full"></div>
                {t('dashboard.med_inventory')}
              </h3>
@@ -562,7 +557,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
           <div className="overflow-x-auto px-8 pb-8">
             <table className="w-full text-left border-separate border-spacing-y-2">
               <thead>
-                <tr className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] border-b border-slate-100">
+                <tr className="text-[9px] font-black text-slate-400 tracking-[0.2em] border-b border-slate-100">
                   <th className="pb-4 pl-4">{t('dashboard.table.status')}</th>
                   <th className="pb-4">{t('dashboard.table.med_name')}</th>
                   <th className="pb-4">
@@ -588,7 +583,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                 {inventoryItems.map((item, idx) => (
                   <tr key={idx} className={cn("group transition-all hover:bg-white hover:translate-x-1", idx % 2 === 0 ? "bg-white/40" : "bg-teal-50/10")}>
                     <td className="py-3 pl-4 first:rounded-l-2xl">
-                      <span className={cn("px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-sm", item.statusColor)}>
+                      <span className={cn("px-2.5 py-1 rounded-lg text-[9px] font-black tracking-widest shadow-sm", item.statusColor)}>
                         {item.status}
                       </span>
                     </td>
@@ -615,7 +610,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
 function Dropdown({ label, light, className }: { label: string; light?: boolean; className?: string }) {
   return (
-    <div className={cn("relative w-full", className)}>
+    <div className={cn("relative w-full mb-2 h-8", className)}>
       <button className={cn(
         "w-full px-4 py-2 rounded-xl flex items-center justify-between text-[10px] font-bold transition-all border shadow-sm active:scale-95 text-teal-800",
         light ? "bg-white border-white" : "bg-white border-teal-100"
@@ -660,17 +655,17 @@ function Card({
               className={cn(
                 "relative flex-1 flex flex-col items-center justify-center cursor-pointer transition-all px-2",
                 idx === activeTab
-                  ? "bg-white z-20 rounded-t-[14px]"
-                  : "bg-[#E2F9EB] z-10 hover:bg-[#D5F5E0] border-r border-[#CFEBD9]/50"
+                  ? "bg-white z-20 rounded-t-[14px] shadow-[0_-4px_12px_rgba(45,212,191,0.1)]"
+                  : "bg-[#E2F9EB]/60 z-10 hover:bg-[#D5F5E0] border-r border-[#CFEBD9]/30"
               )}
               onClick={() => onTabChange?.(idx)}
             >
               {idx === activeTab && (
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-emerald-500 rounded-t-[14px] mx-0.5"></div>
+                <div className="absolute top-0 left-0 right-0 h-1 bg-teal-500 rounded-t-[14px] mx-0.5 animate-in fade-in slide-in-from-top-1"></div>
               )}
               <span className={cn(
-                "text-[9px] font-black uppercase tracking-tight text-center whitespace-normal leading-[1.1]",
-                idx === activeTab ? "text-slate-900" : "text-[#2DA273] opacity-60"
+                "text-[8.5px] font-black tracking-tight text-center whitespace-normal leading-[1.1] transition-colors duration-200",
+                idx === activeTab ? "text-slate-900" : "text-[#2DA273] opacity-50 hover:opacity-100"
               )}>
                 {tab.split(' ').map((word, i) => (
                   <React.Fragment key={i}>
@@ -690,7 +685,82 @@ function Card({
         ) : (
           (title || subtitle) && (
             <div className="mb-2">
-              {subtitle && <p className="text-[9px] font-black text-teal-600 uppercase tracking-widest opacity-40 mb-1">{subtitle}</p>}
+              {subtitle && <p className="text-[9px] font-black text-teal-600 tracking-widest opacity-40 mb-1">{subtitle}</p>}
+              {title && <h4 className="text-sm font-black text-slate-800 tracking-tighter leading-tight">{title}</h4>}
+            </div>
+          )
+        )}
+
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function MapCard({
+  title,
+  subtitle,
+  tabs,
+  children,
+  customTitle,
+  bodyClassName,
+  hideHeader,
+  className,
+  activeTab,
+  onTabChange
+}: {
+  title?: string;
+  subtitle?: string;
+  tabs?: string[];
+  children: React.ReactNode;
+  customTitle?: React.ReactNode;
+  bodyClassName?: string;
+  hideHeader?: boolean;
+  className?: string;
+  activeTab?: number;
+  onTabChange?: (index: number) => void;
+}) {
+  return (
+    <div className={cn("shadow-xl shadow-teal-900/5 overflow-hidden group transition-all", className)}>
+      {/* Folder Style Tabs */}
+      {!hideHeader && tabs && tabs.length > 0 && (
+        <div className="flex h-[48px] bg-[#E2F9EB]">
+          {tabs.map((tab, idx) => (
+            <div key={idx} 
+              className={cn(
+                "relative flex-1 flex flex-col items-center justify-center cursor-pointer transition-all px-2",
+                idx === activeTab
+                  ? "bg-white z-20 rounded-t-[14px] shadow-[0_-4px_12px_rgba(45,212,191,0.1)]"
+                  : "bg-[#E2F9EB]/60 z-10 hover:bg-[#D5F5E0] border-r border-[#CFEBD9]/30"
+              )}
+              onClick={() => onTabChange?.(idx)}
+            >
+              {idx === activeTab && (
+                <div className="absolute top-0 left-0 right-0 h-1 bg-teal-500 rounded-t-[14px] mx-0.5 animate-in fade-in slide-in-from-top-1"></div>
+              )}
+              <span className={cn(
+                "text-[8.5px] font-black tracking-tight text-center whitespace-normal leading-[1.1] transition-colors duration-200",
+                idx === activeTab ? "text-slate-900" : "text-[#2DA273] opacity-50 hover:opacity-100"
+              )}>
+                {tab.split(' ').map((word, i) => (
+                  <React.Fragment key={i}>
+                    {word}
+                    {i < tab.split(' ').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className={cn("p-3", bodyClassName)}>
+        {customTitle !== undefined ? (
+          customTitle
+        ) : (
+          (title || subtitle) && (
+            <div className="mb-2">
+              {subtitle && <p className="text-[9px] font-black text-teal-600 tracking-widest opacity-40 mb-1">{subtitle}</p>}
               {title && <h4 className="text-sm font-black text-slate-800 tracking-tighter leading-tight">{title}</h4>}
             </div>
           )
@@ -721,7 +791,7 @@ function Pin({ color, icon: Icon }: { color: string; icon?: React.ElementType })
        <div className={cn("w-10 h-10 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25 animate-ping", color)}></div>
        
        {/* Enhanced Tooltip */}
-       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-2xl text-[10px] font-black opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 whitespace-nowrap shadow-2xl z-30 border border-white/10 uppercase tracking-[0.15em] ring-4 ring-slate-900/10">
+       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-2xl text-[10px] font-black opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 whitespace-nowrap shadow-2xl z-30 border border-white/10 tracking-[0.15em] ring-4 ring-slate-900/10">
          <div className="flex items-center gap-2">
            <div className={cn("w-2 h-2 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)]", color)}></div>
            {t('dashboard.hospital_regional')}

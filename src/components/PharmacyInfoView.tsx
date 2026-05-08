@@ -74,37 +74,37 @@ const PharmacyInfoView: React.FC = () => {
                 <th className="px-6 py-4 w-12">
                   <input type="checkbox" className="rounded border-slate-300 text-primary focus:ring-primary" />
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   <div className="flex items-center gap-2 group cursor-pointer">
                     {t('pharmacy.status')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   <div className="flex items-center gap-2 group cursor-pointer">
                     {t('pharmacy.name')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   <div className="flex items-center gap-2 group cursor-pointer">
                     {t('pharmacy.location')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap text-center">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap text-center">
                   <div className="flex items-center justify-center gap-2 group cursor-pointer">
                     {t('pharmacy.type')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   <div className="flex items-center gap-2 group cursor-pointer">
                     {t('pharmacy.responsible')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center whitespace-nowrap border-l border-slate-100">
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center whitespace-nowrap border-l border-slate-100">
                   {t('common.actions')}
                 </th>
               </tr>
@@ -126,7 +126,7 @@ const PharmacyInfoView: React.FC = () => {
                   <td className="px-4 py-4">
                     <div className="flex flex-col">
                       <span className="text-sm font-bold text-slate-800">{item.name}</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.code}</span>
+                      <span className="text-[10px] font-bold text-slate-400 tracking-widest">{item.code}</span>
                     </div>
                   </td>
                   <td className="px-4 py-4 text-sm font-bold text-slate-700">{item.location}</td>

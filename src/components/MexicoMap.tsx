@@ -53,8 +53,8 @@ const MexicoMap: React.FC<MexicoMapProps> = ({ className }) => {
         className="absolute inset-0 opacity-10 pointer-events-none" 
         style={{ 
           backgroundImage: "linear-gradient(#0D9488 1px, transparent 1px), linear-gradient(90deg, #0D9488 1px, transparent 1px)", 
-          backgroundSize: "40px 40px",
-          transform: "perspective(1200px) rotateX(60deg) scale(2.5) translateY(120px)",
+          backgroundSize: "20px 20px",
+          transform: "perspective(1200px) rotateX(60deg) scale(2.0) translateY(220px)",
           transformOrigin: "center center"
         }}
       ></div>
@@ -123,18 +123,12 @@ const MexicoMap: React.FC<MexicoMapProps> = ({ className }) => {
           {/* Markers with Elevation - Styled like the reference image */}
           {pins.map((pin, index) => (
             <Marker key={index} coordinates={pin.coordinates as [number, number]}>
-              <g 
-                className="cursor-pointer group"
-                style={{ 
-                  transform: "translateY(-15px) rotateZ(0deg) rotateX(0deg)", // Aligned with parent rotateZ: 0 and facing camera with rotateX: -45deg
-                  transformStyle: 'preserve-3d'
-                }}
-              >
+              <g>
                 {/* Pin Shadow on Map Surface */}
                 <ellipse cx="0" cy="40" rx="6" ry="3" fill="rgba(0,0,0,0.3)" />
                 
                 {/* Visual Pin Design (Flat Circle facing camera) */}
-                <g className="transition-all duration-300 group-hover:scale-125 group-hover:-translate-y-2">
+                <g>
                   {/* Pin Background Circle */}
                   <circle 
                     r={12} 
@@ -155,27 +149,11 @@ const MexicoMap: React.FC<MexicoMapProps> = ({ className }) => {
                     <animate attributeName="opacity" from="0.3" to="0" dur="2s" repeatCount="indefinite" />
                   </circle>
                 </g>
-                
-                {/* Enhanced Tooltip */}
-                <g className="opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-                  <rect x={18} y={-14} width={120} height={28} rx={14} fill="#0F172A" />
-                  <text x={30} y={4} fill="white" fontSize="10" fontWeight="900" className="uppercase tracking-widest">
-                    {pin.label}
-                  </text>
-                  <path d="M18 0 L10 -2 L18 -4" fill="#0F172A" />
-                </g>
               </g>
             </Marker>
           ))}
         </ComposableMap>
       </motion.div>
-
-      <div className="absolute bottom-8 right-8 flex flex-col items-end gap-2">
-        <div className="bg-white/40 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/30 shadow-xl">
-          <p className="text-[10px] font-black text-teal-950 uppercase tracking-[0.2em]">Centro de Operaciones</p>
-          <p className="text-[8px] font-bold text-teal-700/60 uppercase">Monitoreo en Tiempo Real</p>
-        </div>
-      </div>
     </div>
   );
 };

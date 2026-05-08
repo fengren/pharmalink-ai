@@ -41,7 +41,7 @@ const ReplenishmentMgmtView: React.FC = () => {
               <kpi.icon className={cn("w-6 h-6", kpi.color)} />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{kpi.label}</p>
+              <p className="text-xs font-bold text-slate-400 tracking-widest">{kpi.label}</p>
               <p className="text-2xl font-black text-slate-800 tracking-tight">{kpi.value}</p>
             </div>
           </div>
@@ -84,13 +84,13 @@ const ReplenishmentMgmtView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50">
                 <th className="px-6 py-4 w-12"><input type="checkbox" className="rounded" /></th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('replenish.order_status')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('replenish.order_no')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('replenish.med_name')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center">{t('replenish.quantity_requested')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('replenish.expected_delivery')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">ID</th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center">{t('common.actions')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('replenish.order_status')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('replenish.order_no')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('replenish.med_name')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center">{t('replenish.quantity_requested')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('replenish.expected_delivery')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">ID</th>
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -98,7 +98,7 @@ const ReplenishmentMgmtView: React.FC = () => {
                 <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-4">
-                    <span className={cn("px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-tight", order.statusColor)}>
+                    <span className={cn("px-4 py-1.5 rounded-lg text-[10px] font-black tracking-tight", order.statusColor)}>
                       {order.status}
                     </span>
                   </td>
@@ -106,7 +106,7 @@ const ReplenishmentMgmtView: React.FC = () => {
                   <td className="px-4 py-4">
                     <div className="flex flex-col">
                       <span className="text-sm font-bold text-slate-800">{order.med}</span>
-                      <span className="text-[10px] font-medium text-slate-400 uppercase">{order.spec}</span>
+                      <span className="text-[10px] font-medium text-slate-400">{order.spec}</span>
                     </div>
                   </td>
                   <td className="px-4 py-4 text-sm font-black text-slate-800 text-center">{order.quantity}</td>

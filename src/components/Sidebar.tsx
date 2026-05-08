@@ -95,7 +95,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
         <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
           <Activity className="text-white w-6 h-6" />
         </div>
-        <span className="text-2xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap">PharmaLink</span>
+        <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap">PharmaLink</h2>
       </div>
 
       <nav className="flex-1 overflow-y-auto px-4 py-4 scrollbar-hide">

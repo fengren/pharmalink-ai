@@ -11,6 +11,7 @@ import {
   Pie,
   Cell,
   Bar,
+  BarChart,
   ComposedChart
 } from 'recharts';
 import { 
@@ -97,44 +98,12 @@ const DashboardView: React.FC = () => {
     }
   ];
 
-  const notifications = [
-    { 
-      title: 'Alerta de Caducidad: Metformin Tablets Near Expiry', 
-      desc: 'El lote PC20230801 en el Centro Médico ABC vencerá en 30 días. Priorizar su uso.',
-      time: 'Hace 1 hora',
-      type: 'warning',
-      icon: Calendar,
-      color: 'text-yellow-600',
-      bg: 'bg-yellow-50'
-    },
-    { 
-      title: 'Notificación de Envío: Order BH20250701003 Shipped', 
-      desc: 'El pedido de reabastecimiento del Instituto Nacional de Cancerología ha sido enviado por Huadong Pharma. Llegada estimada: 2 días.',
-      time: 'Hace 3 horas',
-      type: 'info',
-      icon: ShoppingCart,
-      color: 'text-emerald-600',
-      bg: 'bg-emerald-50'
-    },
-    { 
-      title: 'Anomalía de Consumo: Aumento repentino en el consumo de levofloxacino inyectable', 
-      desc: 'El consumo en los últimos 7 días en el Hospital Comunitario de Santa Fe aumentó un 150% en comparación con el promedio diario de los 30 días anteriores. Se recomienda seguimiento.',
-      time: 'Ayer 15:30',
-      type: 'error',
-      icon: AlertTriangle,
-      color: 'text-blue-600',
-      bg: 'bg-blue-50'
-    }
-  ];
-
-  const hospitalInventoryData = [
-    { name: 'Hospital General de México', value: 320, rotation: 3.8 },
-    { name: 'Centro Médico ABC', value: 280, rotation: 3.5 },
-    { name: 'Instituto Nacional de Cancerología', value: 250, rotation: 4.1 },
-    { name: 'Hospital Comunitario de Iztapalapa', value: 210, rotation: 3.2 },
-    { name: 'Hospital Comunitario de Santa Fe', value: 180, rotation: 2.9 },
-    { name: 'Centro Médico del Sur', value: 150, rotation: 3.7 },
-    { name: 'Hospital Angeles (México)', value: 120, rotation: 3.1 },
+  const hospitalPerformanceData = [
+    { name: 'Hospital General de México', rotation: 4.2, rupture: 1.8, rational: 92.5 },
+    { name: 'Centro Médico ABC', rotation: 3.9, rupture: 2.1, rational: 88.3 },
+    { name: 'Instituto Nacional de Cancerología', rotation: 4.6, rupture: 1.5, rational: 95.1 },
+    { name: 'Hospital Comunitario de Iztapalapa', rotation: 3.8, rupture: 2.4, rational: 87.2 },
+    { name: 'Hospital Comunitario de Santa Fe', rotation: 3.5, rupture: 2.8, rational: 85.4 },
   ];
 
   const aiVisionItems = [
@@ -172,7 +141,7 @@ const DashboardView: React.FC = () => {
     <div className="space-y-6 max-w-[1600px] mx-auto pb-12 px-1">
       {/* Top Header Section with Filters */}
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-xl font-black text-slate-800 tracking-tight">Panel de Control</h2>
+        <h2 className="">Panel de Control</h2>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl cursor-pointer shadow-sm hover:bg-slate-50 transition-all">
             <span className="text-xs font-bold text-slate-600">Todos los Hospitales</span>
@@ -198,7 +167,7 @@ const DashboardView: React.FC = () => {
               <p className="text-[11px] font-bold text-slate-400 leading-tight mb-1">{kpi.label}</p>
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl font-black text-slate-900 tracking-tighter">{kpi.value}</span>
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-tight">{kpi.unit}</span>
+                <span className="text-[11px] font-bold text-slate-500 tracking-tight">{kpi.unit}</span>
               </div>
             </div>
           </motion.div>
@@ -206,15 +175,15 @@ const DashboardView: React.FC = () => {
       </div>
 
       {/* Main Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
         {/* Resumen de Inventario */}
-        <div className="lg:col-span-3 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
+        <div className="lg:col-span-6 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-10">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight uppercase tracking-widest">Resumen de Inventario</h3>
+            <h3 className="">Resumen de Inventario</h3>
             <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-100 shadow-inner">
                {['Semana', 'Mes', 'Trimestre'].map((t) => (
                  <button key={t} className={cn(
-                   "px-6 py-2 rounded-[10px] text-[10px] font-black uppercase tracking-widest transition-all",
+                   "px-6 py-2 rounded-[10px] text-[10px] font-black tracking-widest transition-all",
                    t === 'Mes' ? "bg-white text-slate-900 shadow-sm border border-slate-100" : "text-slate-400 hover:text-slate-600"
                  )}>
                    {t}
@@ -259,16 +228,16 @@ const DashboardView: React.FC = () => {
             <div className="flex items-center justify-center gap-8 mt-6">
                <div className="flex items-center gap-2">
                  <div className="w-2 h-2 rounded-full border-2 border-blue-500"></div>
-                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Inventario Actual</span>
+                 <span className="text-[10px] font-black text-slate-400 tracking-widest">Inventario Actual</span>
                </div>
             </div>
           </div>
         </div>
 
         {/* Alertas de Medicamentos */}
-        <div className="lg:col-span-2 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
+        <div className="lg:col-span-4 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight uppercase tracking-widest max-w-[200px] leading-tight">Estadísticas de Alertas de Medicamentos</h3>
+            <h3 className="max-w-[200px] leading-tight">Estadísticas de Alertas de Medicamentos</h3>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer">
               <span className="text-[10px] font-bold text-slate-600">Todos los Hospitales</span>
               <ChevronDown className="w-3 h-3 text-slate-400" />
@@ -312,14 +281,14 @@ const DashboardView: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Grid: Tasks and Notifications */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      {/* Bottom Grid: Tasks */}
+      <div className="w-full">
         {/* Task List */}
-        <div className="lg:col-span-3 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
+        <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight uppercase tracking-widest">Lista de Tareas</h3>
+            <h3 className="">Lista de Tareas</h3>
             <button className="flex items-center gap-1 text-primary hover:text-[#005a45] transition-colors">
-              <span className="text-[11px] font-black uppercase tracking-widest">Ver Todo</span>
+              <span className="text-[11px] font-black tracking-widest">Ver Todo</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -332,98 +301,123 @@ const DashboardView: React.FC = () => {
                     <task.icon className={cn("w-5 h-5", task.iconColor)} />
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-sm font-black text-slate-800 mb-1">{task.title} - {task.id}</h4>
+                    <h4 className="mb-1">{task.title} - {task.id}</h4>
                     <p className="text-[11px] font-medium text-slate-400 line-clamp-1">{task.desc}</p>
                   </div>
                 </div>
-                <button className="px-6 py-2.5 bg-[#14532D] text-white rounded-[14px] text-[10px] font-black uppercase tracking-widest hover:bg-[#0f4023] transition-all shadow-lg shadow-green-900/10 flex-shrink-0 ml-4">
+                <button className="px-6 py-2.5 bg-[#14532D] text-white rounded-[14px] text-[10px] font-black tracking-widest hover:bg-[#0f4023] transition-all shadow-lg shadow-green-900/10 flex-shrink-0 ml-4">
                   Ir a Aprobar
                 </button>
               </div>
             ))}
           </div>
         </div>
-
-        {/* System Notifications */}
-        <div className="lg:col-span-2 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight uppercase tracking-widest">Notificación del Sistema</h3>
-            <button className="flex items-center gap-1 text-primary hover:text-[#005a45] transition-colors">
-              <span className="text-[11px] font-black uppercase tracking-widest">Ver Todo</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="space-y-4">
-            {notifications.map((notif, i) => (
-              <div key={i} className="flex gap-5 p-6 rounded-[24px] border border-slate-100 bg-white hover:bg-slate-50 transition-colors cursor-pointer group">
-                <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform", notif.bg)}>
-                  <notif.icon className={cn("w-5 h-5", notif.color)} />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-black text-slate-800 leading-tight line-clamp-1 flex-1 pr-2">{notif.title}</h4>
-                    {notif.time && <span className="text-[9px] font-bold text-slate-300 uppercase whitespace-nowrap">{notif.time}</span>}
-                  </div>
-                  <p className="text-[11px] font-medium text-slate-500 leading-relaxed line-clamp-2">{notif.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
-      {/* Hospital Inventory State Chart (Mockup 2/3) */}
-      <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
+      {/* Hospital Performance Comparison (Chart/Table) */}
+      <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm transition-all hover:shadow-md">
         <div className="flex items-center justify-between mb-10">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight uppercase tracking-widest">Estado del Inventario Hospitalario</h3>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg cursor-pointer">
-              <span className="text-[11px] font-bold text-slate-600">Por Rotación de Inventario</span>
-              <ChevronDown className="w-3 h-3 text-slate-400" />
-            </div>
+          <h3 className="text-xl font-bold text-slate-800">Comparativa de Desempeño entre Hospitales</h3>
+          <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200">
+             <button className="px-6 py-2 bg-white rounded-[10px] text-[11px] font-black text-slate-900 shadow-sm border border-slate-100 tracking-widest uppercase">
+               Gráfico
+             </button>
+             <button className="px-6 py-2 rounded-[10px] text-[11px] font-black text-slate-400 tracking-widest hover:text-slate-600 uppercase">
+               Tabla
+             </button>
           </div>
+        </div>
+
+        {/* Custom Legend at the Top */}
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mb-8 px-4">
+           <div className="flex items-center gap-3">
+             <div className="w-8 h-4 rounded-[4px] bg-[#1FBDF2]"></div>
+             <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Índice de Rotación de Inventario</span>
+           </div>
+           <div className="flex items-center gap-3">
+             <div className="w-8 h-4 rounded-[4px] bg-[#71D1B7]"></div>
+             <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Tasa de Ruptura de Stock</span>
+           </div>
+           <div className="flex items-center gap-3">
+             <div className="w-8 h-4 rounded-[4px] bg-[#FFB347]"></div>
+             <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Tasa de Uso Racional de Medicamentos</span>
+           </div>
         </div>
         
-        <div className="h-[400px]">
+        <div className="h-[450px]">
            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={hospitalInventoryData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
+              <BarChart data={hospitalPerformanceData} margin={{ top: 10, right: 30, left: 10, bottom: 60 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
                 <XAxis 
                   dataKey="name" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  fontSize={9} 
-                  fontStyle="bold" 
-                  tick={{ fill: '#94A3B8' }}
+                  axisLine={{ stroke: '#E2E8F0' }} 
+                  tickLine={{ stroke: '#E2E8F0' }} 
+                  fontSize={10} 
+                  fontWeight={600} 
+                  tick={(props) => {
+                    const { x, y, payload } = props;
+                    const words = payload.value.split(' ');
+                    const firstPart = words.slice(0, 2).join(' ');
+                    const secondPart = words.slice(2).join(' ');
+                    return (
+                      <g transform={`translate(${x},${y})`}>
+                        <text x={0} y={0} dy={16} textAnchor="middle" fill="#64748B" className="text-[10px] font-bold">
+                          <tspan x="0" dy="1.2em">{firstPart}</tspan>
+                          {secondPart && <tspan x="0" dy="1.2em">{secondPart}</tspan>}
+                        </text>
+                      </g>
+                    );
+                  }}
                   interval={0}
                 />
-                <YAxis axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" tick={{ fill: '#94A3B8' }} />
-                <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" tick={{ fill: '#F59E0B' }} domain={[0, 5]} />
-                <RechartsTooltip contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }} />
-                <Bar dataKey="value" fill="#3B82F6" radius={[4, 4, 0, 0]} barSize={20} name="Valor del Inventario" />
-                <Line yAxisId="right" type="monotone" dataKey="rotation" stroke="#F59E0B" strokeWidth={3} dot={{ r: 4, fill: '#F59E0B', strokeWidth: 2, stroke: '#fff' }} name="Índice de Rotación" />
-              </ComposedChart>
+                <YAxis 
+                  domain={[0, 100]} 
+                  axisLine={false} 
+                  tickLine={false} 
+                  fontSize={11} 
+                  fontWeight={700}
+                  tick={{ fill: '#94A3B8' }}
+                  tickFormatter={(val) => `${val}`}
+                />
+                <RechartsTooltip 
+                  cursor={{ fill: '#F8FAFC' }}
+                  contentStyle={{ borderRadius: '24px', border: 'none', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }} 
+                />
+                <Bar 
+                  dataKey="rotation" 
+                  fill="#1FBDF2" 
+                  radius={[4, 4, 0, 0]} 
+                  barSize={15} 
+                  name="Índice de Rotación" 
+                />
+                <Bar 
+                  dataKey="rupture" 
+                  fill="#71D1B7" 
+                  radius={[4, 4, 0, 0]} 
+                  barSize={15} 
+                  name="Tasa de Ruptura" 
+                />
+                <Bar 
+                  dataKey="rational" 
+                  fill="#FFB347" 
+                  radius={[4, 4, 0, 0]} 
+                  barSize={15} 
+                  name="Tasa de Uso Racional" 
+                />
+              </BarChart>
            </ResponsiveContainer>
         </div>
-        <div className="flex items-center justify-center gap-8 mt-4 overflow-hidden">
-             <div className="flex items-center gap-2">
-               <div className="w-4 h-2 bg-blue-400 rounded-sm"></div>
-               <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Valor del Inventario</span>
-             </div>
-             <div className="flex items-center gap-2">
-               <div className="w-4 h-0.5 bg-amber-500 rounded-full"></div>
-               <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Índice de Rotación</span>
-             </div>
-          </div>
+        <div className="flex justify-end mt-4">
+          <p className="text-[9px] font-bold text-slate-300 italic tracking-widest uppercase">Fuente: Sistema Integral PharmaLink AI</p>
+        </div>
       </div>
 
       {/* AI Vision Section (Mockup 3) */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-black text-slate-800 tracking-tight uppercase tracking-widest">AI Visión Operativa</h3>
+          <h3 className="">AI Visión Operativa</h3>
           <button className="flex items-center gap-1 text-primary hover:text-[#005a45] transition-colors">
-            <span className="text-[11px] font-black uppercase tracking-widest">Ver Todo</span>
+            <span className="text-[11px] font-black tracking-widest">Ver Todo</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
@@ -442,14 +436,14 @@ const DashboardView: React.FC = () => {
                    <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm", item.bg)}>
                      <item.icon className={cn("w-6 h-6", item.color)} />
                    </div>
-                   <h4 className="text-base font-black text-slate-800 tracking-tight">{item.title}</h4>
+                   <h4 className="">{item.title}</h4>
                 </div>
                 <p className="text-xs font-medium text-slate-500 leading-relaxed line-clamp-3">
                   {item.desc}
                 </p>
               </div>
               <div className="mt-6 flex justify-end">
-                <button className="flex items-center gap-1 text-[11px] font-black text-primary uppercase tracking-widest hover:translate-x-1 transition-transform">
+                <button className="flex items-center gap-1 text-[11px] font-black text-primary tracking-widest hover:translate-x-1 transition-transform">
                   Detalles <ChevronRight className="w-4 h-4" />
                 </button>
               </div>

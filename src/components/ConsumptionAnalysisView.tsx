@@ -63,22 +63,22 @@ const ConsumptionAnalysisView: React.FC = () => {
       <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm flex flex-col lg:flex-row lg:items-center gap-6">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-all">
-            <span className="text-[11px] font-black text-slate-500 uppercase tracking-tight">Rango de Tiempo</span>
+            <span className="text-[11px] font-black text-slate-500 tracking-tight">Rango de Tiempo</span>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
           </div>
           <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-all">
-            <span className="text-[11px] font-black text-slate-500 uppercase tracking-tight">Hospital</span>
+            <span className="text-[11px] font-black text-slate-500 tracking-tight">Hospital</span>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
           </div>
           <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-all">
              <Calendar className="w-4 h-4 text-slate-400" />
-             <span className="text-[11px] font-black text-slate-500 uppercase tracking-tight">Periodo</span>
+             <span className="text-[11px] font-black text-slate-500 tracking-tight">Periodo</span>
           </div>
         </div>
         
         <div className="flex-1"></div>
 
-        <button className="flex items-center gap-2 px-7 py-3.5 bg-primary text-white rounded-xl text-xs font-black hover:bg-[#005a45] transition-all shadow-lg shadow-primary/20 active:scale-95 uppercase tracking-widest leading-none">
+        <button className="flex items-center gap-2 px-7 py-3.5 bg-primary text-white rounded-xl text-xs font-black hover:bg-[#005a45] transition-all shadow-lg shadow-primary/20 active:scale-95 tracking-widest leading-none">
           <RotateCw className="w-4 h-4" />
           <span>{t('ai.new_chat')}</span>
         </button>
@@ -99,16 +99,16 @@ const ConsumptionAnalysisView: React.FC = () => {
                 <kpi.icon className={cn("w-7 h-7", kpi.color)} />
               </div>
               <div>
-                <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-1.5 leading-none">{kpi.label}</p>
+                <p className="text-[11px] font-black text-slate-400 tracking-widest mb-1.5 leading-none">{kpi.label}</p>
                 <div className="flex items-baseline gap-2">
                   <h4 className="text-2xl font-black text-slate-900 tracking-tight">{kpi.value}</h4>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">{kpi.unit}</span>
+                  <span className="text-[10px] font-bold text-slate-400 tracking-tight">{kpi.unit}</span>
                 </div>
                 <div className="flex items-center gap-1.5 mt-2">
                   <span className={cn("text-[10px] font-black px-1.5 py-0.5 rounded-md", kpi.trendColor ? "bg-rose-50 text-rose-500" : "bg-emerald-50 text-emerald-600")}>
                     {kpi.trend}
                   </span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">{kpi.trendDesc}</span>
+                  <span className="text-[10px] font-bold text-slate-400 tracking-tight">{kpi.trendDesc}</span>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ const ConsumptionAnalysisView: React.FC = () => {
       <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-xl shadow-slate-200/40">
         <div className="flex items-center justify-between mb-10">
           <div>
-            <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">{t('consumption.trend_title')}</h3>
+            <h3 className="">{t('consumption.trend_title')}</h3>
             <p className="text-xs font-medium text-slate-400 mt-1">Estimación Anual Proyectada</p>
           </div>
           <div className="flex items-center bg-slate-50 p-1 rounded-2xl border border-slate-100">
@@ -128,7 +128,7 @@ const ConsumptionAnalysisView: React.FC = () => {
               <button 
                 key={tab}
                 className={cn(
-                  "px-6 py-2.5 rounded-xl text-[10px] font-black transition-all uppercase tracking-widest leading-none",
+                  "px-6 py-2.5 rounded-xl text-[10px] font-black transition-all tracking-widest leading-none",
                   tab === 'Mensual' ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-slate-400 hover:text-slate-600"
                 )}
               >
@@ -160,7 +160,7 @@ const ConsumptionAnalysisView: React.FC = () => {
           ].map(leg => (
             <div key={leg.label} className="flex items-center gap-3">
               <div className={cn("w-3 h-3 rounded-full shadow-sm", leg.color === 'bg-amber-500 dashed' ? 'bg-amber-500 border-2 border-white ring-1 ring-amber-500' : leg.color)}></div>
-              <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{leg.label}</span>
+              <span className="text-[10px] font-black text-slate-500 tracking-widest">{leg.label}</span>
             </div>
           ))}
         </div>
@@ -169,8 +169,8 @@ const ConsumptionAnalysisView: React.FC = () => {
       {/* Details Table */}
       <div className="bg-white rounded-[40px] border border-slate-100 shadow-xl shadow-slate-200/50 overflow-hidden">
         <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50/20">
-          <h3 className="text-base font-black text-slate-800 tracking-tight uppercase">{t('consumption.details_title')}</h3>
-          <button className="flex items-center gap-2 px-6 py-3 border border-slate-200 rounded-2xl text-[11px] font-black text-slate-600 hover:bg-white hover:shadow-sm transition-all uppercase tracking-widest">
+          <h3 className="">{t('consumption.details_title')}</h3>
+          <button className="flex items-center gap-2 px-6 py-3 border border-slate-200 rounded-2xl text-[11px] font-black text-slate-600 hover:bg-white hover:shadow-sm transition-all tracking-widest">
             <Download className="w-4 h-4" />
             <span>{t('common.export')}</span>
           </button>
@@ -181,12 +181,12 @@ const ConsumptionAnalysisView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50 border-b border-slate-100">
                 <th className="px-10 py-6 w-12"><input type="checkbox" className="rounded-md border-slate-300 shadow-sm" /></th>
-                <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Medicamento</th>
-                <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Categoría</th>
-                <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Consumo</th>
-                <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Mensual</th>
-                <th className="px-4 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Anual</th>
-                <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Acciones</th>
+                <th className="px-4 py-6 text-[10px] font-black text-slate-400 tracking-widest">Medicamento</th>
+                <th className="px-4 py-6 text-[10px] font-black text-slate-400 tracking-widest">Categoría</th>
+                <th className="px-4 py-6 text-[10px] font-black text-slate-400 tracking-widest text-center">Consumo</th>
+                <th className="px-4 py-6 text-[10px] font-black text-slate-400 tracking-widest text-center">Mensual</th>
+                <th className="px-4 py-6 text-[10px] font-black text-slate-400 tracking-widest text-center">Anual</th>
+                <th className="px-10 py-6 text-[10px] font-black text-slate-400 tracking-widest text-right">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -200,13 +200,13 @@ const ConsumptionAnalysisView: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-4 py-6">
-                    <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-black uppercase tracking-tight">{row.category}</span>
+                    <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-black tracking-tight">{row.category}</span>
                   </td>
                   <td className="px-4 py-6 text-sm font-black text-slate-900 text-center">{row.real}</td>
                   <td className="px-4 py-6 text-sm font-black text-slate-600 text-center">{row.avg}</td>
                   <td className="px-4 py-6 text-sm font-black text-slate-800 text-center">{row.annual}</td>
                   <td className="px-10 py-6 text-right">
-                    <button className="px-5 py-2 hover:bg-primary/5 rounded-xl text-primary text-[10px] font-black transition-all uppercase tracking-widest leading-none">{t('common.details')}</button>
+                    <button className="px-5 py-2 hover:bg-primary/5 rounded-xl text-primary text-[10px] font-black transition-all tracking-widest leading-none">{t('common.details')}</button>
                   </td>
                 </tr>
               ))}

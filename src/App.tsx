@@ -71,7 +71,7 @@ function AppContent() {
       <div className={cn("flex flex-col min-h-screen", currentView !== 'data-panel' && "pl-72")}>
         {currentView !== 'data-panel' && <Header title={getViewTitle(currentView)} />}
         
-        <main className={cn("flex-1", currentView !== 'data-panel' ? "mt-16 p-8" : "p-8")}>
+        <main className={cn("flex-1", currentView !== 'data-panel' && currentView !== 'ai-assistant' ? "mt-16 p-8" : currentView === 'ai-assistant' ? "mt-16" : "p-8")}>
           {currentView === 'control' && <DashboardView />}
           {currentView === 'data-panel' && <DataPanelView onClose={() => setCurrentView('control')} />}
           {currentView === 'prediction-summary' && <PredictionView />}
@@ -99,7 +99,7 @@ function AppContent() {
                   <Activity className="w-10 h-10" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-slate-800 mb-3 uppercase tracking-tighter">Coming Soon</h3>
+                  <h3 className="mb-3">Coming Soon</h3>
                   <p className="text-sm text-slate-500 font-medium leading-relaxed px-4">
                     {t('placeholder.module_prepping')}
                     <span className="font-bold text-primary mx-1">{getViewTitle(currentView)}</span>

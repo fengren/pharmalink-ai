@@ -11,7 +11,7 @@ export default function Header({ title }: HeaderProps) {
 
   return (
     <header className="h-16 bg-white border-b border-border-subtle flex items-center justify-between px-8 fixed top-0 right-0 left-64 z-10 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-      <h1 className="text-lg font-bold text-slate-800 tracking-tight">{title}</h1>
+      <h1 className="text-lg font-bold text-slate-800 tracking-tight m-4">{title}</h1>
 
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-4">
@@ -28,7 +28,7 @@ export default function Header({ title }: HeaderProps) {
         <div className="flex items-center gap-3">
           <button 
             onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-            className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-border-subtle rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-500 hover:bg-slate-100 transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-border-subtle rounded-lg text-[10px] font-black tracking-widest text-slate-500 hover:bg-slate-100 transition-all"
             title="Switch Language"
           >
             <Languages className="w-3.5 h-3.5 text-primary" />
@@ -49,7 +49,7 @@ export default function Header({ title }: HeaderProps) {
         <button className="flex items-center gap-3 pl-2 group">
           <div className="flex flex-col items-end mr-1">
             <p className="text-sm font-bold text-slate-700 leading-none">Dr. Zhang</p>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">{t('header.admin')}</p>
+            <p className="text-[10px] font-bold text-slate-400 tracking-widest mt-1">{t('header.admin')}</p>
           </div>
           <div className="w-9 h-9 bg-slate-800 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-inner overflow-hidden border-2 border-white">
             Z

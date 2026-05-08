@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
-  BarChart, 
+  ComposedChart,
   Bar, 
+  Line,
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -27,7 +28,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { cn } from '../lib/utils';
 
 const SupplyTrackingView: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const kpis = [
     { label: t('supply.orders_in_transit'), value: '28', change: 'semana pasada 12%', trend: 'up', color: 'text-blue-500', bg: 'bg-blue-50' },
@@ -98,12 +99,12 @@ const SupplyTrackingView: React.FC = () => {
             <div className={`absolute top-0 left-0 w-1.5 h-full ${kpi.color.replace('text', 'bg')}`}></div>
             <div className={cn("p-6 rounded-3xl transition-all", kpi.bg)}>
               <div className="space-y-1 mb-4">
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{kpi.label}</p>
-                <p className="text-3xl font-black text-slate-800 tracking-tighter">{kpi.value}</p>
+                <p className="text-xs font-bold text-slate-500 tracking-widest">{kpi.label}</p>
+                <p className="tracking-tighter">{kpi.value}</p>
               </div>
               <div className="flex items-center gap-1.5">
                 {kpi.trend === 'up' ? <ArrowUp className={cn("w-3 h-3 font-black", kpi.color)} /> : <ArrowDown className={cn("w-3 h-3 font-black", kpi.color)} />}
-                <p className={cn("text-[10px] font-black uppercase", kpi.color)}>{kpi.change}</p>
+                <p className={cn("text-[10px] font-black", kpi.color)}>{kpi.change}</p>
               </div>
             </div>
           </div>
@@ -117,12 +118,12 @@ const SupplyTrackingView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50">
                 <th className="px-6 py-4 w-12"><input type="checkbox" className="rounded" /></th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.status')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('supply.order_no')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('supply.provider_id')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('supply.med_info')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-right">{t('supply.order_amount')}</th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center">{t('common.actions')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.status')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('supply.order_no')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('supply.provider_id')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('supply.med_info')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest text-right">{t('supply.order_amount')}</th>
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -130,7 +131,7 @@ const SupplyTrackingView: React.FC = () => {
                 <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-4">
-                    <span className={cn("px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-tight", row.statusColor)}>
+                    <span className={cn("px-4 py-1.5 rounded-lg text-[10px] font-black tracking-tight", row.statusColor)}>
                       {row.status}
                     </span>
                   </td>
@@ -176,33 +177,74 @@ const SupplyTrackingView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('supply.delivery_stats')}</h3>
+            <h3 className="">{t('supply.delivery_stats')}</h3>
             <button className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[10px] font-bold text-slate-500">
               <span>Últimos 7 Días</span>
               <ChevronDown className="w-3 h-3" />
             </button>
           </div>
-          <div className="h-[300px]">
+          <div className="h-[350px]">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={barData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
-                <XAxis dataKey="name" hide />
-                <YAxis domain={[0, 100]} axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" />
+              <ComposedChart data={barData} margin={{ top: 20, right: 30, left: 10, bottom: 40 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                <XAxis 
+                  dataKey="name" 
+                  axisLine={{ stroke: '#E2E8F0' }} 
+                  tickLine={{ stroke: '#E2E8F0' }} 
+                  fontSize={10} 
+                  fontWeight={600} 
+                  tick={{ fill: '#64748B' }}
+                  interval={0}
+                  dy={10}
+                />
+                <YAxis 
+                  domain={[0, 100]} 
+                  axisLine={false} 
+                  tickLine={false} 
+                  fontSize={11} 
+                  fontWeight={700}
+                  tick={{ fill: '#94A3B8' }}
+                  tickFormatter={(val) => `${val}%`}
+                  ticks={[0, 20, 40, 60, 80, 100]}
+                />
                 <Tooltip 
                   cursor={{ fill: '#F8FAFC' }}
-                  contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }}
+                  contentStyle={{ borderRadius: '24px', border: 'none', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}
                 />
-                <Legend iconType="circle" />
-                <Bar name="Tasa de Puntualidad" dataKey="puntualidad" fill="#3B82F6" radius={[4, 4, 0, 0]} barSize={15} />
-                <Bar name="Tasa de Conformidad" dataKey="conformidad" fill="#F59E0B" radius={[4, 4, 0, 0]} barSize={4} />
-              </BarChart>
+                <Bar 
+                  name={language === 'es' ? 'Tasa de Puntualidad' : 'On-time Rate'} 
+                  dataKey="puntualidad" 
+                  fill="#1FBDF2" 
+                  radius={[6, 6, 0, 0]} 
+                  barSize={24} 
+                />
+                <Line 
+                  type="monotone" 
+                  name={language === 'es' ? 'Tasa de Conformidad' : 'Compliance Rate'} 
+                  dataKey="conformidad" 
+                  stroke="#FFB347" 
+                  strokeWidth={3} 
+                  dot={{ r: 5, fill: '#FFB347', stroke: '#fff', strokeWidth: 2 }} 
+                  activeDot={{ r: 7, strokeWidth: 0 }}
+                />
+              </ComposedChart>
             </ResponsiveContainer>
+          </div>
+          <div className="flex items-center justify-center gap-12 mt-4 px-4">
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#1FBDF2]"></div>
+               <span className="text-[11px] font-black text-slate-500 tracking-widest">{language === 'es' ? 'Tasa de Puntualidad' : 'On-time Rate'}</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <div className="w-3 h-3 rounded-full bg-[#FFB347] border-2 border-white ring-1 ring-[#FFB347]"></div>
+               <span className="text-[11px] font-black text-slate-500 tracking-widest">{language === 'es' ? 'Tasa de Conformidad' : 'Compliance Rate'}</span>
+             </div>
           </div>
         </div>
 
         <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('supply.anomaly_analysis')}</h3>
+            <h3 className="">{t('supply.anomaly_analysis')}</h3>
             <button className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[10px] font-bold text-slate-500">
               <span>Todos los Proveedores</span>
               <ChevronDown className="w-3 h-3" />

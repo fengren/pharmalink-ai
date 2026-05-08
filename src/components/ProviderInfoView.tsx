@@ -60,40 +60,40 @@ const ProviderInfoView: React.FC = () => {
                 <th className="px-6 py-4 w-12 text-center">
                   <input type="checkbox" className="rounded border-slate-300 text-primary focus:ring-primary" />
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                    <div className="flex items-center gap-2 group cursor-pointer justify-center">
                     {t('provider.cooperation')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   <div className="flex items-center gap-2 group cursor-pointer">
                     {t('provider.id')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   <div className="flex items-center gap-2 group cursor-pointer">
                     {t('provider.name')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap text-center">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap text-center">
                   <div className="flex items-center justify-center gap-2 group cursor-pointer">
                     {t('provider.contact')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap text-center">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap text-center">
                   <div className="flex items-center justify-center gap-2 group cursor-pointer">
                     {t('provider.phone')}
                     <ArrowUpDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest whitespace-nowrap">
                   {t('provider.address')}
                 </th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center border-l border-slate-100">
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center border-l border-slate-100">
                   {t('common.actions')}
                 </th>
               </tr>

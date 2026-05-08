@@ -86,7 +86,7 @@ const AlertsCenterView: React.FC = () => {
               <kpi.icon className={cn("w-6 h-6", kpi.color)} />
             </div>
             <div>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">{kpi.label}</p>
+              <p className="text-[10px] font-black text-slate-400 tracking-widest leading-none mb-1">{kpi.label}</p>
               <p className="text-2xl font-black text-slate-800 tracking-tight">{kpi.value}</p>
             </div>
           </motion.div>
@@ -96,7 +96,7 @@ const AlertsCenterView: React.FC = () => {
       {/* Alert List Table */}
       <div className="bg-white rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50 overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('alerts.list_title')}</h3>
+          <h3 className="">{t('alerts.list_title')}</h3>
           <div className="flex items-center gap-2">
             <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-[11px] font-bold text-slate-600 hover:bg-slate-50">
               <Download className="w-3.5 h-3.5 text-slate-400" />
@@ -114,7 +114,7 @@ const AlertsCenterView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50 border-y border-slate-100">
                 <th className="px-6 py-4 w-12"><input type="checkbox" className="rounded" /></th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-400 tracking-widest">
                   <div className="flex items-center gap-2">
                     {t('alerts.level')}
                     <div className="flex flex-col gap-0.5">
@@ -123,7 +123,7 @@ const AlertsCenterView: React.FC = () => {
                     </div>
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-400 tracking-widest">
                   <div className="flex items-center gap-2">
                     {t('alerts.time')}
                     <div className="flex flex-col gap-0.5">
@@ -132,7 +132,7 @@ const AlertsCenterView: React.FC = () => {
                     </div>
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-400 tracking-widest">
                   <div className="flex items-center gap-2">
                     {t('alerts.type')}
                     <div className="flex flex-col gap-0.5">
@@ -141,7 +141,7 @@ const AlertsCenterView: React.FC = () => {
                     </div>
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-400 tracking-widest">
                   <div className="flex items-center gap-2">
                     {t('alerts.med_name')}
                     <div className="flex flex-col gap-0.5">
@@ -150,7 +150,7 @@ const AlertsCenterView: React.FC = () => {
                     </div>
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-400 tracking-widest">
                   <div className="flex items-center gap-2">
                     {t('alerts.stock_available')}
                     <div className="flex flex-col gap-0.5">
@@ -159,7 +159,7 @@ const AlertsCenterView: React.FC = () => {
                     </div>
                   </div>
                 </th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="px-4 py-4 text-[11px] font-black text-slate-400 tracking-widest">
                   <div className="flex items-center gap-2">
                     {t('alerts.stock_min')}
                     <div className="flex flex-col gap-0.5">
@@ -168,7 +168,7 @@ const AlertsCenterView: React.FC = () => {
                     </div>
                   </div>
                 </th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-400 uppercase tracking-widest">{t('common.actions')}</th>
+                <th className="px-6 py-4 text-[11px] font-black text-slate-400 tracking-widest">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -176,13 +176,13 @@ const AlertsCenterView: React.FC = () => {
                 <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-4">
-                    <span className={cn("px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-tight", alert.levelColor)}>
+                    <span className={cn("px-4 py-1 rounded-full text-[10px] font-black tracking-tight", alert.levelColor)}>
                       {alert.level}
                     </span>
                   </td>
                   <td className="px-4 py-4 text-xs font-bold text-slate-600 tracking-tight">{alert.time}</td>
                   <td className="px-4 py-4">
-                    <span className={cn("px-2 py-1 rounded text-[10px] font-black uppercase tracking-tighter", alert.typeColor)}>
+                    <span className={cn("px-2 py-1 rounded text-[10px] font-black tracking-tighter", alert.typeColor)}>
                       {alert.type}
                     </span>
                   </td>

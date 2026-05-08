@@ -87,7 +87,7 @@ const ProviderPerformanceView: React.FC = () => {
         {kpis.map((kpi, idx) => (
           <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group">
             <div className="flex justify-between items-start mb-4">
-              <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-relaxed max-w-[150px]">{kpi.label}</p>
+              <p className="text-xs font-black text-slate-400 tracking-widest leading-relaxed max-w-[150px]">{kpi.label}</p>
               <div className={cn("p-2 rounded-xl", kpi.bg)}>
                 <kpi.icon className={cn("w-5 h-5", kpi.color)} />
               </div>
@@ -97,7 +97,7 @@ const ProviderPerformanceView: React.FC = () => {
               <div className="flex items-center gap-2">
                 {kpi.trend === 'up' ? <ArrowUp className="w-3 h-3 text-emerald-500" /> : <ArrowDown className="w-3 h-3 text-rose-500" />}
                 <span className={cn("text-xs font-black", kpi.trend === 'up' ? "text-emerald-500" : "text-rose-500")}>{kpi.change}</span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('common.previous_period')}</span>
+                <span className="text-[10px] font-bold text-slate-400 tracking-widest">{t('common.previous_period')}</span>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@ const ProviderPerformanceView: React.FC = () => {
         {/* Ranking Table */}
         <div className="lg:col-span-2 bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('provider.classification')}</h3>
+            <h3 className="">{t('provider.classification')}</h3>
             <div className="relative">
               <button className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-600">
                 <span>Por Puntuación General</span>
@@ -120,7 +120,7 @@ const ProviderPerformanceView: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <tr className="text-[10px] font-black text-slate-400 tracking-widest">
                   <th className="pb-4 px-4">{t('provider.name')}</th>
                   <th className="pb-4 px-4">Puntuación Global</th>
                   <th className="pb-4 px-4">Tasa de Puntualidad</th>
@@ -156,7 +156,7 @@ const ProviderPerformanceView: React.FC = () => {
         {/* Trend Area Chart */}
         <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('provider.trend')}</h3>
+            <h3 className="">{t('provider.trend')}</h3>
             <div className="flex bg-slate-100 p-1 rounded-xl">
               {['Semana', 'Mes', 'Trimestre'].map((period, i) => (
                 <button key={i} className={cn("px-4 py-1.5 text-xs font-bold rounded-lg", i === 1 ? "bg-white shadow-sm" : "text-slate-500")}>
@@ -187,15 +187,15 @@ const ProviderPerformanceView: React.FC = () => {
           <div className="mt-4 flex items-center justify-center gap-4">
              <div className="flex items-center gap-1.5">
                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-               <span className="text-[10px] font-bold text-slate-400 uppercase">Rotación</span>
+               <span className="text-[10px] font-bold text-slate-400">Rotación</span>
              </div>
              <div className="flex items-center gap-1.5">
                <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-               <span className="text-[10px] font-bold text-slate-400 uppercase">Cumplimiento</span>
+               <span className="text-[10px] font-bold text-slate-400">Cumplimiento</span>
              </div>
              <div className="flex items-center gap-1.5">
                <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-               <span className="text-[10px] font-bold text-slate-400 uppercase">Calidad</span>
+               <span className="text-[10px] font-bold text-slate-400">Calidad</span>
              </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ const ProviderPerformanceView: React.FC = () => {
       {/* Alerts Table */}
       <div className="bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('provider.anomaly_alerts')}</h3>
+          <h3 className="">{t('provider.anomaly_alerts')}</h3>
           <div className="flex gap-4">
             <div className="relative">
               <button className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-600">
@@ -225,12 +225,12 @@ const ProviderPerformanceView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50">
                 <th className="px-6 py-4 w-12"><input type="checkbox" className="rounded" /></th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.status')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.alert_type')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('provider.name')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">Ámbito Afectado</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">Fecha de Ocurrencia</th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center">{t('common.actions')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.status')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.alert_type')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('provider.name')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">Ámbito Afectado</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">Fecha de Ocurrencia</th>
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -238,7 +238,7 @@ const ProviderPerformanceView: React.FC = () => {
                 <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-4">
-                    <span className={cn("px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tight", alert.color)}>
+                    <span className={cn("px-4 py-1.5 rounded-full text-[10px] font-black tracking-tight", alert.color)}>
                       {alert.status}
                     </span>
                   </td>

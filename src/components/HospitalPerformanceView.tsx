@@ -87,7 +87,7 @@ const HospitalPerformanceView: React.FC = () => {
         {kpis.map((kpi, idx) => (
           <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden group">
             <div className="flex justify-between items-start mb-4">
-              <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-relaxed max-w-[150px]">{kpi.label}</p>
+              <p className="text-xs font-black text-slate-400 tracking-widest leading-relaxed max-w-[150px]">{kpi.label}</p>
               <div className={cn("p-1.5 rounded-lg", kpi.trend === 'up' ? "bg-emerald-50" : "bg-rose-50")}>
                 {kpi.trend === 'up' ? <ArrowUp className={cn("w-4 h-4", kpi.color)} /> : <ArrowDown className={cn("w-4 h-4", kpi.color)} />}
               </div>
@@ -96,7 +96,7 @@ const HospitalPerformanceView: React.FC = () => {
               <p className="text-3xl font-black text-slate-800 tracking-tighter">{kpi.value}</p>
               <div className="flex items-center gap-2">
                 <span className={cn("text-xs font-black", kpi.color)}>{kpi.change}</span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('common.month_change')}</span>
+                <span className="text-[10px] font-bold text-slate-400 tracking-widest">{t('common.month_change')}</span>
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@ const HospitalPerformanceView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('hospital.performance_comparison')}</h3>
+            <h3 className="">{t('hospital.performance_comparison')}</h3>
             <div className="flex bg-slate-100 p-1 rounded-xl">
               <button className="px-4 py-1.5 text-xs font-bold rounded-lg bg-white shadow-sm">Gráfico</button>
               <button className="px-4 py-1.5 text-xs font-bold text-slate-500">Tabla</button>
@@ -134,7 +134,7 @@ const HospitalPerformanceView: React.FC = () => {
 
         <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('hospital.historical_trends')}</h3>
+            <h3 className="">{t('hospital.historical_trends')}</h3>
             <div className="flex bg-slate-100 p-1 rounded-xl">
               {['Semana', 'Mes', 'Trimestre', 'Año'].map((period, i) => (
                 <button key={i} className={cn("px-4 py-1.5 text-xs font-bold rounded-lg", i === 1 ? "bg-white shadow-sm" : "text-slate-500")}>
@@ -162,7 +162,7 @@ const HospitalPerformanceView: React.FC = () => {
       {/* Alerts Table */}
       <div className="bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight">{t('hospital.anomaly_alerts')}</h3>
+          <h3 className="">{t('hospital.anomaly_alerts')}</h3>
           <div className="flex bg-slate-100 p-1 rounded-xl">
             {['Todos', 'Pendiente', 'Resuelto'].map((status, i) => (
               <button key={i} className={cn("px-4 py-1.5 text-xs font-bold rounded-lg", i === 0 ? "bg-white shadow-sm" : "text-slate-500")}>
@@ -176,14 +176,14 @@ const HospitalPerformanceView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50">
                 <th className="px-6 py-4 w-12"><input type="checkbox" className="rounded" /></th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.status')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.alert_type')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.hospital')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.indicator')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.actual_value')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.ref_value')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.deviation_rate')}</th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest text-center">{t('common.actions')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.status')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.alert_type')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.hospital')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.indicator')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.actual_value')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.ref_value')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.deviation_rate')}</th>
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest text-center">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -191,7 +191,7 @@ const HospitalPerformanceView: React.FC = () => {
                 <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-4">
-                    <span className={cn("px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tight", alert.color)}>
+                    <span className={cn("px-4 py-1.5 rounded-full text-[10px] font-black tracking-tight", alert.color)}>
                       {alert.status}
                     </span>
                   </td>

@@ -28,10 +28,14 @@ import { cn } from '../lib/utils';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const inventoryStateData = [
-  { name: 'Cefaclor', current: 520, min: 100, optimal: 150, max: 200 },
-  { name: 'Metronidazol', current: 650, min: 20, optimal: 30, max: 50 },
-  { name: 'Aspirina', current: 720, min: 40, optimal: 100, max: 150 },
-  { name: 'Ibuprofeno', current: 600, min: 120, optimal: 200, max: 300 },
+  { name: 'Cápsulas de Cefaclor', actual: 350, min: 0, optimal: 130, max: 120 },
+  { name: 'Comprimidos de Metronidazol', actual: 530, min: 0, optimal: 0, max: 50 },
+  { name: 'Aspirina con Recubrimiento Entérico', actual: 640, min: 0, optimal: 0, max: 15 },
+  { name: 'Cápsulas de Liberación Prolongada de Ibuprofeno', actual: 450, min: 0, optimal: 150, max: 200 },
+  { name: 'Comprimidos de Amlodipino y Benazepril', actual: 820, min: 0, optimal: 0, max: 0 },
+  { name: 'Comprimidos de Liberación Controlada de Nifedipino', actual: 100, min: 350, optimal: 0, max: 150 },
+  { name: 'Comprimidos de Clorhidrato de Metformina', actual: 580, min: 0, optimal: 40, max: 230 },
+  { name: 'Cápsulas de Amoxicilina', actual: 1250, min: 0, optimal: 0, max: 30 },
 ];
 
 export default function PredictionView() {
@@ -46,17 +50,13 @@ export default function PredictionView() {
             <Sparkles className="w-4 h-4" />
             {t('prediction.reforecast')}
           </button>
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            {t('prediction.last_result')}: <span className="text-slate-800 ml-1">2025-07-04</span>
-          </div>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 border border-border-subtle rounded-lg text-xs font-bold uppercase tracking-wider text-slate-500 hover:bg-slate-50 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 border border-border-subtle rounded-lg text-xs font-bold tracking-wider text-slate-500 hover:bg-slate-50 transition-colors">
             <Filter className="w-3.5 h-3.5" /> {language === 'es' ? 'Filtrar' : 'Filter'}
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 border border-border-subtle rounded-lg text-xs font-bold uppercase tracking-wider text-slate-500 hover:bg-slate-50 transition-colors">
-            <Download className="w-3.5 h-3.5" /> {language === 'es' ? 'Exportar' : 'Export'}
+          <button className="flex items-center gap-2 px-4 py-3 border border-border-subtle rounded-lg text-xs font-bold tracking-wider text-slate-500 hover:bg-slate-50 transition-colors">
+            <Download className="w-3.5 h-3.5 text-slate-400" /> {language === 'es' ? 'Exportar' : 'Export'}
           </button>
         </div>
       </div>
@@ -100,79 +100,67 @@ export default function PredictionView() {
       {/* Inventory State Bar Chart */}
       <div className="bg-white rounded-xl border border-border-subtle p-8 shadow-sm">
         <div className="flex items-center justify-between mb-10">
-          <h3 className="text-lg font-black text-slate-900 tracking-tight">{t('dashboard.hospital_state')}</h3>
+          <h3 className="text-xl font-black text-slate-800">{language === 'es' ? 'Estado de Inventario' : 'Inventory Status'}</h3>
           <div className="flex gap-3">
-            <select className="bg-slate-50/50 border border-border-subtle rounded-lg px-2 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider focus:outline-none">
-              <option>{language === 'es' ? 'Categoría' : 'Category'}</option>
-            </select>
+            <div className="relative">
+              <select className="appearance-none bg-slate-50/50 border border-border-subtle rounded-lg pl-3 pr-8 py-1.5 text-[10px] font-bold text-slate-500 tracking-wider focus:outline-none cursor-pointer">
+                <option>{language === 'es' ? 'Categoría de Medicamento' : 'Medication Category'}</option>
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 pointer-events-none" />
+            </div>
+            <div className="relative">
+              <select className="appearance-none bg-slate-50/50 border border-border-subtle rounded-lg pl-3 pr-8 py-1.5 text-[10px] font-bold text-slate-500 tracking-wider focus:outline-none cursor-pointer">
+                <option>{language === 'es' ? 'Farmacia' : 'Pharmacy'}</option>
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 pointer-events-none" />
+            </div>
           </div>
         </div>
 
-        <div className="h-[350px]">
+        <div className="h-[450px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
               layout="vertical" 
               data={inventoryStateData}
-              margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+              margin={{ top: 5, right: 30, left: 180, bottom: 5 }}
+              barGap={0}
             >
-              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#F1F5F9" />
-              <XAxis type="number" axisLine={false} tickLine={false} tick={{fill: '#94A3B8', fontSize: 11, fontWeight: 600}} />
+              <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={true} stroke="#E2E8F0" />
+              <XAxis 
+                type="number" 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{fill: '#94A3B8', fontSize: 11, fontWeight: 600}}
+                domain={[0, 1300]}
+                ticks={[0, 300, 600, 900, 1200]}
+              />
               <YAxis 
                 dataKey="name" 
                 type="category" 
                 axisLine={false} 
                 tickLine={false} 
-                width={100}
-                tick={{fill: '#475569', fontSize: 11, fontWeight: 700}} 
+                width={180}
+                tick={{fill: '#64748B', fontSize: 10, fontWeight: 700}} 
               />
               <Tooltip 
-                cursor={{fill: '#F8FAFC'}}
+                cursor={{fill: '#F8FAFC', opacity: 0.5}}
                 contentStyle={{borderRadius: '12px', border: 'none', shadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
               />
-              <Legend verticalAlign="bottom" align="center" wrapperStyle={{paddingTop: '30px', fontSize: '11px', fontWeight: '700', textTransform: 'uppercase'}} />
-              <Bar dataKey="current" name={language === 'es' ? 'Actual' : 'Current'} stackId="a" fill="#006B52" barSize={24} radius={[0, 4, 4, 0]} />
-              <Bar dataKey="min" name={language === 'es' ? 'Mínimo' : 'Min'} stackId="a" fill="#FFB86C" barSize={24} />
-              <Bar dataKey="optimal" name={language === 'es' ? 'Óptimo' : 'Optimal'} stackId="a" fill="#88D4CC" barSize={24} />
+              <Legend 
+                verticalAlign="bottom" 
+                align="center" 
+                wrapperStyle={{paddingTop: '40px', fontSize: '11px', fontWeight: '700', color: '#64748B'}} 
+                iconType="rect"
+              />
+              <Bar dataKey="actual" name={language === 'es' ? 'Stock Actual' : 'Current Stock'} stackId="a" fill="#1FBDF2" barSize={22} radius={[0, 2, 2, 0]} />
+              <Bar dataKey="min" name={language === 'es' ? 'Stock Mínimo' : 'Minimum Stock'} stackId="a" fill="#FFB347" barSize={22} radius={[0, 2, 2, 0]} />
+              <Bar dataKey="optimal" name={language === 'es' ? 'Stock Óptimo' : 'Optimal Stock'} stackId="a" fill="#72D2B5" barSize={22} radius={[0, 2, 2, 0]} />
+              <Bar dataKey="max" name={language === 'es' ? 'Stock Máximo' : 'Maximum Stock'} stackId="a" fill="#FFDFD0" barSize={22} radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      <div className="space-y-6">
-        <h3 className="text-lg font-black text-slate-900 tracking-tight px-2">{t('prediction.detail_subtitle')}</h3>
-        <PredictionDetailCard 
-          name={language === 'es' ? 'Cápsulas de Amoxicilina' : 'Amoxicillin Capsules'}
-          provider="GSK"
-          leadTime="3—5 Días"
-          prediction="350 Unidades"
-          precision="94.8%"
-          available="1,250"
-          avgCons="320"
-          forecastCons="45 Unidades/Day"
-          minStock="640"
-          maxStock="960"
-          optimalStock="1,280"
-          lastEntry="2025-07-20"
-          status="Low Stock"
-          analysis={language === 'es' ? 'Según el método CPM y el consumo de los últimos 12 meses, se estima que se necesitarán 400 unidades en los próximos 30 días. Además, considerando la próxima temporada de gripe, el método PharmaLink recomienda 960 unidades para hacer frente a una posible demanda repentina.' : 'According to the CPM method and consumption over the last 12 months, it is estimated that 400 units will be needed in the next 30 days. Additionally, considering the upcoming flu season, the PharmaLink method recommends 960 units to meet possible sudden demand.'}
-        />
-        <PredictionDetailCard 
-          name={language === 'es' ? 'Gránulos de Ganmaoling' : 'Ganmaoling Granules'}
-          provider="GSK"
-          leadTime="3—5 Días"
-          prediction="350 Unidades"
-          precision="94.8%"
-          available="1,250"
-          avgCons="320"
-          forecastCons="45 Unidades/Day"
-          minStock="640"
-          maxStock="960"
-          optimalStock="1,280"
-          lastEntry="2025-07-20"
-          status="Low Stock"
-          analysis={language === 'es' ? 'Según el método CPM y el consumo de los últimos 12 meses, se estima que se necesitarán 400 unidades en los próximos 30 días.' : 'According to the CPM method and consumption over the last 12 months, it is estimated that 400 units will be needed in the next 30 days.'}
-        />
-      </div>
     </div>
   );
 }
@@ -195,101 +183,6 @@ function KPIItem({ label, value, trend, trendUp, icon: Icon, iconBg }: any) {
       <div className={cn("w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 transition-transform group-hover:scale-110", iconBg)}>
         <Icon className="w-6 h-6" />
       </div>
-    </div>
-  );
-}
-
-function PredictionDetailCard({ 
-  name, 
-  provider, 
-  leadTime, 
-  prediction, 
-  precision, 
-  available, 
-  avgCons,
-  forecastCons,
-  minStock,
-  maxStock,
-  optimalStock,
-  lastEntry, 
-  status,
-  analysis 
-}: any) {
-  const { t, language } = useLanguage();
-  return (
-    <div className="bg-rose-50/50 rounded-[32px] border border-rose-100/50 p-6 relative overflow-hidden transition-all hover:shadow-lg hover:shadow-rose-500/5 group border-b-4 border-b-rose-200/30">
-      {/* Card Header-like Info */}
-      <div className="flex items-start justify-between mb-6">
-        <div className="space-y-1">
-          <h4 className="text-lg font-black text-slate-900 tracking-tight">{name}</h4>
-          <div className="flex items-center gap-6 text-[12px] font-medium text-slate-500">
-            <span>{t('prediction.provider')}: <span className="text-slate-700 font-bold ml-1">{provider}</span></span>
-            <span>{t('prediction.lead_time')}: <span className="text-slate-700 font-bold ml-1">{leadTime}</span></span>
-          </div>
-        </div>
-        <div className="bg-rose-500 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-rose-500/20">
-          {language === 'es' ? 'Stock Bajo' : 'Low Stock'}
-        </div>
-      </div>
-
-      {/* Main Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-        <div className="col-span-1 bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-2xl text-white shadow-xl shadow-blue-500/20 flex flex-col justify-center gap-1">
-          <p className="text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 opacity-90">
-            <Sparkles className="w-3 h-3" />
-            {t('prediction.replenishment_planned')}
-          </p>
-          <p className="text-xl font-black tracking-tight">{prediction}</p>
-        </div>
-
-        <MetricItem label={t('prediction.forecast_accuracy')} value={precision} />
-        <MetricItem label={t('prediction.expected_consumption')} value={forecastCons} />
-        <MetricItem label={t('prediction.available_stock')} value={available} />
-        <MetricItem label={t('prediction.monthly_avg_consumption')} value={avgCons} />
-      </div>
-
-      {/* Secondary Stats Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 px-1">
-        <MetricItem label={t('prediction.min_stock')} value={minStock} />
-        <MetricItem label={t('prediction.max_stock')} value={maxStock} />
-        <MetricItem label={t('prediction.optimal_stock')} value={optimalStock} />
-        <MetricItem label={t('prediction.last_entry')} value={lastEntry} />
-      </div>
-
-      {/* Analysis Box */}
-      <div className="bg-white rounded-2xl p-5 border border-white shadow-sm mb-8">
-        <h5 className="text-[12px] font-bold text-slate-800 mb-2 flex items-center gap-2">
-          {t('prediction.analysis_title')}
-        </h5>
-        <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-          {analysis}
-        </p>
-      </div>
-
-      {/* Actions */}
-      <div className="flex flex-wrap gap-3">
-        <button className="bg-[#004D40] text-white px-6 py-3 rounded-xl font-bold text-xs transition-all hover:bg-[#00382E] shadow-lg shadow-teal-900/10 active:scale-95">
-          {t('prediction.confirm_replenishment')}
-        </button>
-        <button className="bg-white text-slate-700 border border-slate-200 px-6 py-3 rounded-xl font-bold text-xs transition-all hover:bg-slate-50 active:scale-95">
-          {t('prediction.modify_quantity')}
-        </button>
-        <button className="bg-white text-slate-700 border border-slate-200 px-6 py-3 rounded-xl font-bold text-xs transition-all hover:bg-slate-50 active:scale-95">
-          {t('prediction.change_provider')}
-        </button>
-        <button className="bg-white text-slate-700 border border-slate-200 px-6 py-3 rounded-xl font-bold text-xs transition-all hover:bg-slate-50 active:scale-95">
-          {t('prediction.view_details')}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function MetricItem({ label, value }: any) {
-  return (
-    <div className="px-1">
-      <p className="text-xs font-medium text-slate-500 mb-2 truncate">{label}</p>
-      <p className="text-2xl font-black text-slate-900 tracking-tight">{value}</p>
     </div>
   );
 }

@@ -62,12 +62,12 @@ const ShipmentMgmtView: React.FC = () => {
             <thead>
               <tr className="bg-slate-50/50">
                 <th className="px-6 py-4 w-12"><input type="checkbox" className="rounded" /></th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('shipment.shipment_no')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('shipment.lot_no')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('shipment.receiving_hospital')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('shipment.actual_quantity')}</th>
-                <th className="px-4 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('shipment.actual_delivery_date')}</th>
-                <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{t('common.actions')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('shipment.shipment_no')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('shipment.lot_no')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('shipment.receiving_hospital')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('shipment.actual_quantity')}</th>
+                <th className="px-4 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('shipment.actual_delivery_date')}</th>
+                <th className="px-6 py-4 text-[11px] font-black text-slate-500 tracking-widest">{t('common.actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -80,7 +80,7 @@ const ShipmentMgmtView: React.FC = () => {
                   <td className="px-4 py-4">
                     <div className="flex flex-col">
                       <span className="text-sm font-bold text-slate-800">{ship.meds}</span>
-                      <span className="text-[10px] font-medium text-slate-400 uppercase">Total: {ship.total}</span>
+                      <span className="text-[10px] font-medium text-slate-400">Total: {ship.total}</span>
                     </div>
                   </td>
                   <td className="px-4 py-4 text-sm font-medium text-slate-600">{ship.date}</td>
