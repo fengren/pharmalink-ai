@@ -302,7 +302,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               tabs={['Rotación', 'Estado']}
               activeTab={activeTab2}
               onTabChange={setActiveTab2}
-              className="rounded-t-none border-t border-teal-50 shadow-t-none h-[300px]"
+              className="border-b-0 shadow-none relative z-10 h-[250px]"
               customTitle={(
                 <div className="space-y-2 mb-2">
                   <div className="flex justify-between items-end">
@@ -446,7 +446,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               activeTab={activeTab3}
               onTabChange={setActiveTab3}
               bodyClassName="w-[340px]"
-              className="rounded-b-none border-b-0 shadow-none relative z-10 h-[300px]"
+              className="border-b-0 shadow-none relative z-10 h-[250px]"
             >
               <div className="flex flex-row items-center h-[240px] pt-2">
                 {/* Legend on the Left */}
@@ -521,7 +521,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               activeTab={activeTab4}
               onTabChange={setActiveTab4}
               bodyClassName="w-[340px]"
-              className="rounded-t-none border-t border-teal-50 shadow-t-none h-[300px]"
+              className="border-b-0 shadow-none relative z-10 h-[250px]"
             >
               <div className="space-y-2">
                 <div className="space-y-2">
