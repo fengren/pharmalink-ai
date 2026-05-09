@@ -21,7 +21,8 @@ import {
   AlertTriangle,
   ChevronDown,
   ChevronRight,
-  Plus
+  Plus,
+  Sparkles
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { motion } from 'motion/react';
@@ -134,13 +135,13 @@ const DashboardView: React.FC = () => {
   ];
 
   const hospitalInventoryStateData = [
-    { name: t('hospital.gen'), value: 320, rotation: 4.2 },
-    { name: t('hospital.abc'), value: 280, rotation: 3.8 },
-    { name: t('hospital.can'), value: 250, rotation: 4.5 },
-    { name: t('hospital.izt'), value: 220, rotation: 3.9 },
-    { name: t('hospital.santa'), value: 190, rotation: 3.2 },
-    { name: t('hospital.sur'), value: 160, rotation: 4.1 },
-    { name: t('hospital.ang'), value: 130, rotation: 3.6 },
+    { name: t('hospital.gen'), value: 320, rotation: 4.2, rupture: 15 },
+    { name: t('hospital.abc'), value: 280, rotation: 3.8, rupture: 12 },
+    { name: t('hospital.can'), value: 250, rotation: 4.5, rupture: 8 },
+    { name: t('hospital.izt'), value: 220, rotation: 3.9, rupture: 22 },
+    { name: t('hospital.santa'), value: 190, rotation: 3.2, rupture: 18 },
+    { name: t('hospital.sur'), value: 160, rotation: 4.1, rupture: 10 },
+    { name: t('hospital.ang'), value: 130, rotation: 3.6, rupture: 5 },
   ];
 
   const aiVisionItems = [
@@ -178,7 +179,7 @@ const DashboardView: React.FC = () => {
     <div className="space-y-6 max-w-[1600px] mx-auto pb-12 px-1">
       {/* Top Header Section with Filters */}
       <div className="flex items-center justify-between mb-2">
-        <h2 className="">{t('nav.control')}</h2>
+        <h2 className="text-2xl font-black text-slate-800 tracking-tighter">{t('nav.control')}</h2>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl cursor-pointer shadow-sm hover:bg-slate-50 transition-all">
             <span className="text-xs font-bold text-slate-600">{t('header.all_hospitals')}</span>
@@ -216,7 +217,7 @@ const DashboardView: React.FC = () => {
         {/* Task List */}
         <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="">{t('dashboard.task_list')}</h3>
+            <h3 className="text-xl font-bold text-slate-800">{t('dashboard.task_list')}</h3>
             <button className="flex items-center gap-1 text-primary hover:text-[#005a45] transition-colors">
               <span className="text-[11px] font-black tracking-widest uppercase">{t('common.view_all')}</span>
               <ChevronRight className="w-4 h-4" />
@@ -246,7 +247,7 @@ const DashboardView: React.FC = () => {
         {/* Notifications List */}
         <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="">{t('dashboard.notifications')}</h3>
+            <h3 className="text-xl font-bold text-slate-800">{t('dashboard.notifications')}</h3>
             <button className="flex items-center gap-1 text-primary hover:text-[#005a45] transition-colors">
               <span className="text-[11px] font-black tracking-widest uppercase">{t('common.view_all')}</span>
               <ChevronRight className="w-4 h-4" />
@@ -285,6 +286,10 @@ const DashboardView: React.FC = () => {
           <div className="flex items-center gap-3">
             <div className="w-8 h-4 rounded-[4px] bg-[#1FBDF2]"></div>
             <span className="text-[11px] font-bold text-slate-500">{t('dashboard.inventory_value')}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-4 rounded-[4px] bg-[#EF4444]"></div>
+            <span className="text-[11px] font-bold text-slate-500">{t('dashboard.stock_insufficient')}</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-[#FFB347] border-2 border-white ring-1 ring-[#FFB347]"></div>
@@ -348,6 +353,13 @@ const DashboardView: React.FC = () => {
                   barSize={18} 
                   name={t('dashboard.inventory_value')}
                 />
+                <Bar 
+                  dataKey="rupture" 
+                  fill="#EF4444" 
+                  radius={[6, 6, 0, 0]} 
+                  barSize={18} 
+                  name={t('dashboard.stock_insufficient')}
+                />
                 <Line 
                   yAxisId="right"
                   type="monotone" 
@@ -366,7 +378,7 @@ const DashboardView: React.FC = () => {
       {/* AI Vision Section (Mockup 3) */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="">{t('dashboard.ai_vision')}</h3>
+          <h3 className="text-xl font-bold text-slate-800">{t('dashboard.ai_vision')}</h3>
           <button className="flex items-center gap-1 text-primary hover:text-[#005a45] transition-colors">
             <span className="text-[11px] font-black tracking-widest">{t('dashboard.see_all')}</span>
             <ChevronRight className="w-4 h-4" />
@@ -400,6 +412,50 @@ const DashboardView: React.FC = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Daily Consumption Analysis Bar Chart */}
+        <div className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h3 className="text-xl font-bold text-slate-800">{t('consumption.trend_title')}</h3>
+              <p className="text-xs font-medium text-slate-400 mt-1">Análisis de consumo por categoría de producto</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-xl text-[10px] font-black tracking-widest">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>AI OPTIMIZED</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="h-[250px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={[
+                { name: 'Antibióticos', value: 450, color: '#006B52' },
+                { name: 'Cardio', value: 380, color: '#1B9C85' },
+                { name: 'Analgesia', value: 320, color: '#4CBB17' },
+                { name: 'Insumos', value: 540, color: '#00A36C' },
+                { name: 'Onco', value: 210, color: '#2E8B57' },
+              ]}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" tick={{ fill: '#94A3B8' }} />
+                <YAxis axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" tick={{ fill: '#94A3B8' }} />
+                <RechartsTooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)', padding: '16px' }} />
+                <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={40}>
+                  {[
+                    { name: 'Antibióticos', value: 450, color: '#1FBDF2' },
+                    { name: 'Cardio', value: 380, color: '#71D1B7' },
+                    { name: 'Analgesia', value: 320, color: '#FFB347' },
+                    { name: 'Insumos', value: 540, color: '#006B52' },
+                    { name: 'Onco', value: 210, color: '#EF4444' },
+                  ].map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>

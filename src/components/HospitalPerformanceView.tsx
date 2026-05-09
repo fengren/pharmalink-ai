@@ -119,7 +119,7 @@ const HospitalPerformanceView: React.FC = () => {
             </div>
           </div>
 
-          {/* Legend */}
+          {/* Legend Top */}
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mb-8 px-4">
              <div className="flex items-center gap-3">
                <div className="w-8 h-4 rounded-[4px] bg-[#1FBDF2]"></div>
@@ -197,6 +197,22 @@ const HospitalPerformanceView: React.FC = () => {
                 </BarChart>
              </ResponsiveContainer>
           </div>
+          
+          {/* Legend Bottom */}
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-8 px-4">
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#1FBDF2]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{t('hospital.rotation_index')}</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#71D1B7]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{t('hospital.rupture_rate')}</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#FFB347]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{t('hospital.rational_use')}</span>
+             </div>
+          </div>
         </div>
 
         {/* Historical Trends (40%) */}
@@ -240,7 +256,7 @@ const HospitalPerformanceView: React.FC = () => {
       {/* Alerts Table */}
       <div className="bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <h3 className="">{t('hospital.anomaly_alerts')}</h3>
+          <h3 className="text-xl font-bold text-slate-800">{t('hospital.anomaly_alerts')}</h3>
           <div className="flex bg-slate-100 p-1 rounded-xl">
             {['Todos', 'Pendiente', 'Resuelto'].map((status, i) => (
               <button key={i} className={cn("px-4 py-1.5 text-xs font-bold rounded-lg", i === 0 ? "bg-white shadow-sm" : "text-slate-500")}>

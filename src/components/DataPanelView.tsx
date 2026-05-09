@@ -387,7 +387,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             <div className="backdrop-blur-md rounded-[12px] bg-[#e4f8f0] border-2 border-[#77dcb8] shadow-2xl shadow-teal-900/5 p-4 flex items-center justify-between gap-4 overflow-hidden relative group">
               <div className="flex items-center gap-4 px-4 border-r border-slate-100 shrink-0">
                  <div className="space-y-1">
-                   <h3 className="mb-1 tracking-[0.1em]">Hospitales</h3>
+                   <h3 className="mb-1">Hospitales</h3>
                    <p className="text-xl font-black text-[#008f78] tracking-tighter leading-none">176</p>
                  </div>
               </div>
@@ -402,7 +402,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                        <stat.icon className="w-4 h-4 stroke-[2.5]" />
                      </div>
                      <div className="min-w-0">
-                       <p className={cn("text-[7px] font-black tracking-widest leading-none mb-1.5 opacity-60", stat.color)}>{stat.label}</p>
+                       <p className={cn("text-[9px] font-black tracking-widest leading-none mb-1.5 opacity-60", stat.color)}>{stat.label}</p>
                        <p className="text-l font-black text-slate-800 tracking-tighter leading-none">{stat.value}</p>
                      </div>
                    </div>
