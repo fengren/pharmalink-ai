@@ -99,7 +99,7 @@ function AppContent() {
                   <Activity className="w-10 h-10" />
                 </div>
                 <div>
-                  <h3 className="mb-3">Coming Soon</h3>
+                  <h3 className="mb-3">{t('common.coming_soon')}</h3>
                   <p className="text-sm text-slate-500 font-medium leading-relaxed px-4">
                     {t('placeholder.module_prepping')}
                     <span className="font-bold text-primary mx-1">{getViewTitle(currentView)}</span>

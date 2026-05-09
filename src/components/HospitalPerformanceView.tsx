@@ -104,40 +104,108 @@ const HospitalPerformanceView: React.FC = () => {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
+      <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
+        {/* Hospital Performance Comparison (60%) */}
+        <div className="lg:col-span-6 bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm transition-all hover:shadow-md">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="">{t('hospital.performance_comparison')}</h3>
-            <div className="flex bg-slate-100 p-1 rounded-xl">
-              <button className="px-4 py-1.5 text-xs font-bold rounded-lg bg-white shadow-sm">Gráfico</button>
-              <button className="px-4 py-1.5 text-xs font-bold text-slate-500">Tabla</button>
+            <h3 className="text-xl font-bold text-slate-800">{t('hospital.performance_comparison')}</h3>
+            <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200">
+               <button className="px-6 py-2 bg-white rounded-[10px] text-[11px] font-black text-slate-900 shadow-sm border border-slate-100 tracking-widest uppercase">
+                 {t('common.graph')}
+               </button>
+               <button className="px-6 py-2 rounded-[10px] text-[11px] font-black text-slate-400 tracking-widest hover:text-slate-600 uppercase">
+                 {t('common.table')}
+               </button>
             </div>
           </div>
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={comparisonData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
-                <XAxis dataKey="name" hide />
-                <YAxis axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" />
-                <Tooltip 
-                  cursor={{ fill: '#F8FAFC' }}
-                  contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }}
-                />
-                <Legend />
-                <Bar dataKey="rotation" name="Índice de Rotación" fill="#3B82F6" radius={[4, 4, 0, 0]} barSize={12} />
-                <Bar dataKey="rupture" name="Tasa de Ruptura" fill="#10B981" radius={[4, 4, 0, 0]} barSize={12} />
-                <Bar dataKey="rational" name="Uso Racional" fill="#F59E0B" radius={[4, 4, 0, 0]} barSize={30} />
-              </BarChart>
-            </ResponsiveContainer>
+
+          {/* Legend */}
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mb-8 px-4">
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#1FBDF2]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{t('hospital.rotation_index')}</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#71D1B7]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{t('hospital.rupture_rate')}</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <div className="w-8 h-4 rounded-[4px] bg-[#FFB347]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{t('hospital.rational_use')}</span>
+             </div>
+          </div>
+          
+          <div className="h-[400px]">
+             <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={comparisonData} margin={{ top: 10, right: 30, left: 10, bottom: 60 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={{ stroke: '#E2E8F0' }} 
+                    tickLine={{ stroke: '#E2E8F0' }} 
+                    fontSize={10} 
+                    fontWeight={600} 
+                    tick={(props: any) => {
+                      const { x, y, payload } = props;
+                      const words = payload.value.split(' ');
+                      const firstPart = words.slice(0, 2).join(' ');
+                      const secondPart = words.slice(2).join(' ');
+                      return (
+                        <g transform={`translate(${x},${y})`}>
+                          <text x={0} y={0} dy={16} textAnchor="middle" fill="#64748B" className="text-[10px] font-bold">
+                            <tspan x="0" dy="1.2em">{firstPart}</tspan>
+                            {secondPart && <tspan x="0" dy="1.2em">{secondPart}</tspan>}
+                          </text>
+                        </g>
+                      );
+                    }}
+                    interval={0}
+                  />
+                  <YAxis 
+                    domain={[0, 100]} 
+                    axisLine={false} 
+                    tickLine={false} 
+                    fontSize={11} 
+                    fontWeight={700}
+                    tick={{ fill: '#94A3B8' }}
+                  />
+                  <Tooltip 
+                    cursor={{ fill: '#F8FAFC' }}
+                    contentStyle={{ borderRadius: '24px', border: 'none', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }} 
+                  />
+                  <Bar 
+                    dataKey="rotation" 
+                    fill="#1FBDF2" 
+                    radius={[4, 4, 0, 0]} 
+                    barSize={15} 
+                    name={t('hospital.rotation_index')} 
+                  />
+                  <Bar 
+                    dataKey="rupture" 
+                    fill="#71D1B7" 
+                    radius={[4, 4, 0, 0]} 
+                    barSize={15} 
+                    name={t('hospital.rupture_rate')} 
+                  />
+                  <Bar 
+                    dataKey="rational" 
+                    fill="#FFB347" 
+                    radius={[4, 4, 0, 0]} 
+                    barSize={15} 
+                    name={t('hospital.rational_use')} 
+                  />
+                </BarChart>
+             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
+        {/* Historical Trends (40%) */}
+        <div className="lg:col-span-4 bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm transition-all hover:shadow-md">
           <div className="flex items-center justify-between mb-8">
             <h3 className="">{t('hospital.historical_trends')}</h3>
             <div className="flex bg-slate-100 p-1 rounded-xl">
-              {['Semana', 'Mes', 'Trimestre', 'Año'].map((period, i) => (
-                <button key={i} className={cn("px-4 py-1.5 text-xs font-bold rounded-lg", i === 1 ? "bg-white shadow-sm" : "text-slate-500")}>
+              {[t('common.week'), t('common.month'), t('common.quarter'), t('common.year')].map((period, i) => (
+                <button key={i} className={cn("px-4 py-1.5 text-[10px] font-black rounded-lg transition-all", period === t('common.month') ? "bg-white shadow-sm border border-slate-100 text-slate-900" : "text-slate-400 hover:text-slate-600")}>
                   {period}
                 </button>
               ))}
@@ -147,14 +215,24 @@ const HospitalPerformanceView: React.FC = () => {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trendData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" />
-                <YAxis axisLine={false} tickLine={false} fontSize={10} fontStyle="bold" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} fontSize={10} fontWeight={600} tick={{ fill: '#94A3B8' }} />
+                <YAxis axisLine={false} tickLine={false} fontSize={10} fontWeight={600} tick={{ fill: '#94A3B8' }} />
                 <Tooltip contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }} />
-                <Line type="monotone" dataKey="rotation" stroke="#3B82F6" strokeWidth={3} dot={{ r: 4, fill: '#3B82F6' }} />
-                <Line type="monotone" dataKey="rupture" stroke="#10B981" strokeWidth={3} dot={{ r: 4, fill: '#10B981' }} />
-                <Line type="monotone" dataKey="rational" stroke="#F59E0B" strokeWidth={3} dot={{ r: 4, fill: '#F59E0B' }} />
+                <Line type="monotone" dataKey="rotation" stroke="#3B82F6" strokeWidth={3} dot={{ r: 4, fill: '#3B82F6', stroke: '#fff', strokeWidth: 2 }} activeDot={{ r: 6, strokeWidth: 0 }} />
+                <Line type="monotone" dataKey="rupture" stroke="#10B981" strokeWidth={3} dot={{ r: 4, fill: '#10B981', stroke: '#fff', strokeWidth: 2 }} activeDot={{ r: 6, strokeWidth: 0 }} />
+                <Line type="monotone" dataKey="rational" stroke="#F59E0B" strokeWidth={3} dot={{ r: 4, fill: '#F59E0B', stroke: '#fff', strokeWidth: 2 }} activeDot={{ r: 6, strokeWidth: 0 }} />
               </LineChart>
             </ResponsiveContainer>
+          </div>
+          <div className="flex items-center justify-center gap-6 mt-6">
+             <div className="flex items-center gap-2">
+               <div className="w-2 h-2 rounded-full bg-[#3B82F6]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest">{t('hospital.rotation_index')}</span>
+             </div>
+             <div className="flex items-center gap-2">
+               <div className="w-2 h-2 rounded-full bg-[#10B981]"></div>
+               <span className="text-[10px] font-black text-slate-400 tracking-widest">{t('hospital.rupture_rate')}</span>
+             </div>
           </div>
         </div>
       </div>

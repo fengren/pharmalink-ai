@@ -63,9 +63,9 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
 
   const consumoData = [
-    { value: '28,764', comparison: '3.22', comparisonType: 'up', label: 'Comparación Anual' },
-    { value: '2,347', comparison: '24.68', comparisonType: 'down', label: 'Comparación Mensual' },
-    { value: '28,764', comparison: '12.5', comparisonType: 'up', label: 'Comparación Anual' },
+    { value: '28,764', comparison: '3.22', comparisonType: 'up', label: t('dashboard.comparison_annual') },
+    { value: '2,347', comparison: '24.68', comparisonType: 'down', label: t('dashboard.comparison_monthly') },
+    { value: '28,764', comparison: '12.5', comparisonType: 'up', label: t('dashboard.comparison_annual') },
   ];
 
   const inventarioData = [
@@ -75,16 +75,16 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
 
   const proporcionData = [
     [
-      { name: 'Medicamentos de Emergencia', value: 25, color: '#3B82F6' },
-      { name: 'Antibióticos', value: 25, color: '#10B981' },
-      { name: 'Medicamentos para Enfermedades Crónicas', value: 25, color: '#0EA5E9' },
-      { name: 'Otros', value: 25, color: '#8B5CF6' },
+      { name: t('dashboard.med_emergency'), value: 25, color: '#3B82F6' },
+      { name: t('dashboard.med_antiinfective'), value: 25, color: '#10B981' },
+      { name: t('dashboard.med_chronic'), value: 25, color: '#0EA5E9' },
+      { name: t('dashboard.med_other'), value: 25, color: '#8B5CF6' },
     ],
     [
-      { name: 'Analgésico', value: 30, color: '#EF4444' },
-      { name: 'Antiinfeccioso', value: 20, color: '#10B981' },
-      { name: 'Cardiovascular', value: 25, color: '#F59E0B' },
-      { name: 'Otro', value: 25, color: '#8B5CF6' },
+      { name: t('nav.med_info'), value: 30, color: '#EF4444' },
+      { name: t('dashboard.med_antiinfective'), value: 20, color: '#10B981' },
+      { name: t('dashboard.performance'), value: 25, color: '#F59E0B' },
+      { name: t('dashboard.med_other'), value: 25, color: '#8B5CF6' },
     ],
   ];
 
@@ -230,7 +230,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             </div>
 
             <Card
-              tabs={['Consumo Total', 'Consumo Promedio Mensual', 'Consumo Anual']}
+              tabs={[t('dashboard.total_consumption'), t('dashboard.avg_monthly_consumption'), t('dashboard.annual_consumption')]}
               activeTab={activeTab1}
               onTabChange={setActiveTab1}
               bodyClassName="w-[340px]"
@@ -238,7 +238,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
               customTitle={(
                 <div className="flex flex-row items-center justify-between mb-6 pt-4">
                   <div className="text-left">
-                    <p className="text-[9.5px] font-black text-slate-400 tracking-widest mb-1">Consumo</p>
+                    <p className="text-[9.5px] font-black text-slate-400 tracking-widest mb-1">{t('dashboard.total_consumption')}</p>
                     <p className="text-xl font-black text-slate-800 tracking-tighter leading-none">{consumoData[activeTab1].value}</p>
                   </div>
 
@@ -246,8 +246,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                     <div className="flex flex-col items-center">
                       <div className="flex items-end gap-1.5 mb-2 h-8 justify-center">
                         <div className="flex flex-col items-end whitespace-nowrap">
-                          <span className="text-[9px] font-black text-slate-800 leading-tight">Comparación</span>
-                          <span className="text-[8px] font-bold text-slate-400 leading-tight">Anual (Interanual)</span>
+                          <span className="text-[9px] font-black text-slate-800 leading-tight">{t('common.comparison')}</span>
+                          <span className="text-[8px] font-bold text-slate-400 leading-tight">{t('dashboard.comparison_annual')}</span>
                         </div>
                         <div className="bg-emerald-500 p-0.5 rounded-sm mb-0.5">
                           <ArrowUp className="w-2.5 h-2.5 text-white stroke-[3]" />
@@ -269,8 +269,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                     <div className="flex flex-col items-center">
                       <div className="flex items-end gap-1.5 mb-2 h-8 justify-center">
                         <div className="flex flex-col items-end whitespace-nowrap">
-                          <span className="text-[9px] font-black text-slate-800 leading-tight">Comparación</span>
-                          <span className="text-[8px] font-bold text-slate-400 leading-tight">Mensual</span>
+                          <span className="text-[9px] font-black text-slate-800 leading-tight">{t('common.comparison')}</span>
+                          <span className="text-[8px] font-bold text-slate-400 leading-tight">{t('dashboard.comparison_monthly')}</span>
                         </div>
                         <div className="bg-rose-500 p-0.5 rounded-sm mb-0.5">
                           <ArrowDown className="w-2.5 h-2.5 text-white stroke-[3]" />
@@ -298,7 +298,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             </Card>
 
             <Card
-              tabs={['Rotación', 'Estado']}
+              tabs={[t('dashboard.inventory_rotation'), t('common.status')]}
               activeTab={activeTab2}
               onTabChange={setActiveTab2}
               className="border-b-0 shadow-none relative z-10 h-[250px]"
@@ -306,9 +306,9 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                 <div className="space-y-2 mb-2">
                   <div className="flex justify-between items-end">
                     <div className="text-left">
-                       <p className="text-[10px] font-black text-teal-600 tracking-widest mb-1">Rotación de Inventario</p>
+                       <p className="text-[10px] font-black text-teal-600 tracking-widest mb-1">{t('dashboard.stock_turnover_rate')}</p>
                        <p className="text-xs font-bold text-slate-500 leading-tight">
-                         Stock de Consumo / Inventario Promedio
+                         {t('dashboard.inventory_turnover')}
                        </p>
                     </div>
                     <p className="text-xl font-black text-slate-800 tracking-tight">
@@ -328,8 +328,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                   <div className="flex flex-col items-center">
                     <div className="flex items-end gap-1 mb-1 h-8 justify-center">
                       <div className="flex flex-col items-end whitespace-nowrap">
-                        <span className="text-[9px] font-black text-slate-800 leading-tight">Comparación</span>
-                        <span className="text-[8px] font-bold text-slate-400 leading-tight">Anual</span>
+                        <span className="text-[9px] font-black text-slate-800 leading-tight">{t('common.comparison')}</span>
+                        <span className="text-[8px] font-bold text-slate-400 leading-tight">{t('day.sat')}</span>
                       </div>
                       <div className="w-3.5 h-3.5 bg-emerald-500 rounded flex items-center justify-center mb-0.5">
                         <ArrowUp className="w-2.5 h-2.5 text-white" />
@@ -352,8 +352,8 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                   <div className="flex flex-col items-center">
                     <div className="flex items-end gap-1 mb-1 h-8 justify-center">
                       <div className="flex flex-col items-end whitespace-nowrap">
-                        <span className="text-[9px] font-black text-slate-800 leading-tight">Comparación</span>
-                        <span className="text-[8px] font-bold text-slate-400 leading-tight">Mensual</span>
+                        <span className="text-[9px] font-black text-slate-800 leading-tight">{t('common.comparison')}</span>
+                        <span className="text-[8px] font-bold text-slate-400 leading-tight">{t('common.month')}</span>
                       </div>
                       <div className="w-3.5 h-3.5 bg-rose-500 rounded flex items-center justify-center mb-0.5">
                         <ArrowDown className="w-2.5 h-2.5 text-white" />
@@ -439,7 +439,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             </div>
 
             <Card
-              tabs={['Proporción', 'Tendencia']}
+              tabs={[t('dashboard.medicine_proportion'), t('dashboard.income_trend')]}
               activeTab={activeTab3}
               onTabChange={setActiveTab3}
               bodyClassName="w-[340px]"
@@ -512,7 +512,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
             </Card>
 
             <Card
-              tabs={['Proveedor', 'Cumplimiento']}
+              tabs={[t('prediction.provider'), t('dashboard.compliance')]}
               activeTab={activeTab4}
               onTabChange={setActiveTab4}
               bodyClassName="w-[340px]"
@@ -529,7 +529,7 @@ export default function DataPanelView({ onClose }: DataPanelViewProps) {
                          <div className="flex items-center justify-between mb-1">
                            <h5 className="text-[9.5px] font-bold text-slate-800 truncate pr-2 tracking-widest leading-none">{prov.name}</h5>
                            <div className="text-[9.5px] font-bold text-teal-600 flex items-center gap-1">
-                             <span className="text-slate-400 font-bold text-[7px] scale-90 origin-right">Puntuación</span>
+                             <span className="text-slate-400 font-bold text-[7px] scale-90 origin-right">{t('dashboard.score')}</span>
                              <span className="font-black text-xs">{prov.score}</span>
                            </div>
                          </div>

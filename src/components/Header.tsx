@@ -18,8 +18,8 @@ export default function Header({ title }: HeaderProps) {
           <div className="relative">
             <select className="appearance-none bg-slate-50/50 border border-border-subtle rounded-lg px-4 py-1.5 pr-10 text-xs font-semibold text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/10 transition-all">
               <option>{t('header.all_hospitals')}</option>
-              <option>Hospital General de México</option>
-              <option>Centro Médico ABC</option>
+              <option>{t('hospital.gen')}</option>
+              <option>{t('hospital.abc')}</option>
             </select>
             <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
           </div>
